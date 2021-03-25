@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import styles from 'styles/Home.module.css';
+import styles from 'styles/Footer.module.css';
 
 
 export function Footer(): ReactElement {
