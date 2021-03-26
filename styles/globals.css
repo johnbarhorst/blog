@@ -17,6 +17,7 @@ body {
   box-sizing: inherit;
 }
 
+
 /*16px*/
 
 body {
@@ -30,6 +31,8 @@ body {
 p {
   margin-bottom: 1rem;
 }
+
+/* Headings */
 
 h1,
 h2,
@@ -68,10 +71,36 @@ small,
   font-size: 0.833rem;
 }
 
+/* Layout */
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+
+header h3 {
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a+a {
+  margin-left: none;
+}
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
+@media screen and (min-width: 768px) {
+  nav a+a {
+    margin-left: 10px;
+  }
+}

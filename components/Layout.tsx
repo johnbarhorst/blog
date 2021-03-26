@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { ReactElement, ReactNode } from 'react';
 import { Footer } from './Footer';
 import styles from 'styles/Layout.module.css';
+import Header from './Header';
 
 
 export function Layout({ children }: { children: ReactNode }): ReactElement {
@@ -10,10 +11,8 @@ export function Layout({ children }: { children: ReactNode }): ReactElement {
       <Head>
         <title>John Barhorst | Web Developer</title>
       </Head>
-      <header>PlaceHeader</header>
-      <main>
-        {children}
-      </main>
+      <Header />
+      {children}
       <Footer />
     </div>
   );
