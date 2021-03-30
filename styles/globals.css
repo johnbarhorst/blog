@@ -73,34 +73,10 @@ small,
 
 /* Layout */
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 5rem;
-}
 
-header h3 {
-  padding: 0;
-  margin: 0;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-}
-
-nav a+a {
-  margin-left: none;
-}
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
-  nav a+a {
-    margin-left: 10px;
-  }
-}
