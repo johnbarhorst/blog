@@ -17,6 +17,8 @@ export function ActiveLink({ href, children }: Props):ReactElement {
     return false;
   };
 
+  const isActive = isCurrentPath(href, router.pathname);
+
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     router.push(href);
@@ -26,9 +28,9 @@ export function ActiveLink({ href, children }: Props):ReactElement {
     <motion.a 
       href={href}
       onClick={handleClick}
-      className={isCurrentPath(href, router.pathname) ? style.isActive : null}
+      className={isActive ? style.isActive : null}
       whileHover={{
-        scale: 1.1
+        y: -3
       }}
     >
       {children}
