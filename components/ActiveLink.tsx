@@ -1,7 +1,6 @@
 import { MouseEvent, ReactElement, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import style from 'styles/ActiveLink.module.css';
 
 type Props = {
   href: string,
@@ -28,7 +27,13 @@ export function ActiveLink({ href, children }: Props):ReactElement {
     <motion.a 
       href={href}
       onClick={handleClick}
-      className={isActive ? style.isActive : null}
+      initial={false}
+      animate={{
+        color: isActive ? 'var(--red)' : 'var(--black)',
+        transition: {
+          duration: .5
+        }
+      }}
       whileHover={{
         y: -3
       }}
