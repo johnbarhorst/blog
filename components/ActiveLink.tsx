@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { MouseEvent, ReactElement, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
 type Props = {
@@ -15,7 +15,7 @@ export function ActiveLink({ href, children }: Props):ReactElement {
     return false;
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     router.push(href);
   };
