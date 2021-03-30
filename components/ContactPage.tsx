@@ -1,12 +1,11 @@
 import { ReactElement } from 'react';
 import { FadeIn } from './FadeIn';
-
-
+import style from 'styles/Contact.module.css';
 
 export function ContactPage():ReactElement {
   return (
     <FadeIn>
-      <main>
+      <main className={style.main}>
         <h1>Contact!</h1>
         <p>Thanks to the wonders of technology, you can get a hold of me in a variety of ways.</p>
         <ul>
