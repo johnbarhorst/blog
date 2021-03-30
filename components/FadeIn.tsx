@@ -8,7 +8,7 @@ const variants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 1
+      duration: .3
     }
   },
   exit: {
