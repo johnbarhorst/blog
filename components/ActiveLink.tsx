@@ -1,5 +1,7 @@
 import { MouseEvent, ReactElement, ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import style from 'styles/ActiveLink.module.css';
 
 type Props = {
   href: string,
@@ -21,8 +23,15 @@ export function ActiveLink({ href, children }: Props):ReactElement {
   };
 
   return (
-    <a href={href} onClick={handleClick} className={isCurrentPath(href, router.pathname) ? 'isActive' : null}>
+    <motion.a 
+      href={href}
+      onClick={handleClick}
+      className={isCurrentPath(href, router.pathname) ? style.isActive : null}
+      whileHover={{
+        scale: 1.1
+      }}
+    >
       {children}
-    </a>
+    </motion.a>
   );
 }
