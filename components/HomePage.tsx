@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import style from 'styles/Home.module.css';
 import { FadeIn } from './FadeIn';
+import style from 'styles/Home.module.css';
 
 export function HomePage(): ReactElement {
   return (
@@ -11,7 +11,7 @@ export function HomePage(): ReactElement {
         <p>I build fast, responsive, and accessible websites and apps in exchange for money.</p>
         <div className={style.wrapper}>
           <section>
-            <h4>My Main Tech</h4>
+            <h4>My main tech</h4>
             <ul>
               <li>React.js</li>
               <li>Next.js</li>
