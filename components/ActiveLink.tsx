@@ -29,7 +29,7 @@ export function ActiveLink({ href, children }: Props):ReactElement {
       onClick={handleClick}
       initial={false}
       animate={{
-        color: isActive ? 'var(--red)' : 'var(--black)',
+        color: isActive ? 'var(--red)' : 'var(--link)',
         transition: {
           duration: .5
         }

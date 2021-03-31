@@ -3,7 +3,8 @@
   justify-content: space-between;
   align-items: center;
   height: 5rem;
-  margin: 0 1rem;
+  padding: 0 1rem;
+  background: var(--darkBlue);
   text-transform: lowercase;
 }
 
@@ -19,6 +20,7 @@
 
 .nav a {
   padding: .5rem;
+  color: #fff;
 }
 
 .nav a+a {

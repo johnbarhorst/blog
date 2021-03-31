@@ -10,4 +10,15 @@
 
 .wrapper ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.wrapper li {
+  padding: 1rem;
+  background: var(--darkBlue);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
 }
