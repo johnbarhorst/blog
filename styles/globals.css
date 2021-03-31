@@ -25,17 +25,21 @@ body {
   --apricot: #FFBF69;
   --persianGreen: #339989;
   --link: #fff;
+  --primaryBG: var(--orange);
+  --secondaryBG: var(--darkBlue);
+  --textLight: #fff;
+  --textDark: var(--black);
 }
 
 
 /*16px*/
 
 body {
-  background: var(--persianGreen);
+  background: var(--primaryBG);
   font-family: 'Esteban', serif;
   font-weight: 400;
   line-height: 1.75;
-  color: var(--black);
+  color: var(--textDark);
 }
 
 p {
@@ -86,7 +90,7 @@ small,
 
 
 a {
-  color: #fff;
+  color: var(--textLight);
   text-decoration: none;
 }
 

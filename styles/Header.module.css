@@ -4,7 +4,7 @@
   align-items: center;
   height: 5rem;
   padding: 0 1rem;
-  background: var(--darkBlue);
+  background: var(--secondaryBG);
   text-transform: lowercase;
 }
 

@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--secondaryBG);
+  color: var(--textLight);
 }
 
 .footer img {

@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.main p {
+  font-size: 1.5rem;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
