@@ -1,6 +1,28 @@
 import { ReactElement } from 'react';
 import { FadeIn } from './FadeIn';
 import style from 'styles/Home.module.css';
+import { motion } from 'framer-motion';
+
+const variants = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      delay: .3,
+      staggerChildren: .2
+    }
+  },
+  exit: {
+    opacity: 0
+  }
+};
+
+const itemVariants = {
+  initial: { y: 50, opacity: 0 },
+  animate: { y:0, opacity: 1 }
+};
 
 export function HomePage(): ReactElement {
   return (
@@ -12,22 +34,48 @@ export function HomePage(): ReactElement {
         <div className={style.wrapper}>
           <section>
             <h4>My main tech</h4>
-            <ul>
-              <li>React.js</li>
-              <li>Next.js</li>
-              <li>Node/Express</li>
-              <li>Mongoose/MongoDB</li>
-              <li>Framer Motion</li>
-              <li>Styled Components</li>
-            </ul>
+            <motion.ul
+              variants={variants}
+              initial='initial'
+              animate='animate'
+            >
+              <motion.li
+                variants={itemVariants}
+              >React.js</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Next.js</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Node/Express</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Mongoose/MongoDB</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Framer Motion</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Styled Components</motion.li>
+            </motion.ul>
           </section>
           <section>
             <h4>I like to dabble in</h4>
-            <ul>
-              <li>Svelte</li>
-              <li>TypeScript</li>
-              <li>Sass</li>
-            </ul>
+            <motion.ul
+              variants={variants}
+              initial='initial'
+              animate='animate'
+            >
+              <motion.li
+                variants={itemVariants}
+              >Svelte</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >TypeScript</motion.li>
+              <motion.li
+                variants={itemVariants}
+              >Sass</motion.li>
+            </motion.ul>
           </section>
         </div>
       </main>
