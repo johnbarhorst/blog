@@ -4,12 +4,17 @@
 }
 
 .main p {
-  font-size: 1.5rem;
+  font-size: 80%;
+  text-align: center;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.main:last-child {
+  margin-bottom: 5rem;
+}
+
+.main h3,
+.main h4 {
+  text-align: center;
 }
 
 .wrapper ul {
@@ -17,6 +22,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  padding: 0;
 }
 
 .wrapper li {
@@ -25,4 +31,25 @@
   border-radius: 10px;
   text-align: center;
   color: #fff;
+}
+
+.shuffleButton {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .main p {
+    font-size: 1.5rem;
+    text-align: start;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
