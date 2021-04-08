@@ -21,8 +21,8 @@ export function ImplodingText({ string }: Props):ReactElement {
         return (
           <motion.span
             style={{
-              display: 'inline-block',
-              padding: char === ' ' ? '0 .15em' : ''
+              // Spaces squish together when inline-block. But need inline-block to animate positionally.
+              display: char === ' ' ? 'inline' : 'inline-block',
             }}
             key={i + char}
             initial={calcDirection(i, string.length)}
