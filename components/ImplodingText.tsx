@@ -5,15 +5,22 @@ type Props = {
   string: string
 }
 
+const variants = {
+  initial: ({ length, direction }: {length: number, direction: number}) => ({
+    x: ((length + 1) * 10) * direction,
+    y: -45
+  }),
+  animate: {
+    x:0,
+    y:0,
+    transition: {
+      duration: 1
+    }
+  }
+};
+
 export function ImplodingText({ string }: Props):ReactElement {
 
-  function calcDirection(i: number, length: number): {x: number, y: number} {
-    const direction = i >= length / 2 ? 1 : -1; 
-    return {
-      x: ((i + 1) * 10) * direction,
-      y: -45
-    };
-  }
   return (
     <>
       {string.split('').map((char, i) => {
@@ -21,18 +28,17 @@ export function ImplodingText({ string }: Props):ReactElement {
         return (
           <motion.span
             style={{
-              // Spaces squish together when inline-block. But need inline-block to animate positionally.
-              display: char === ' ' ? 'inline' : 'inline-block',
+              display: 'inline-block',
+              whiteSpace: 'pre-wrap'
             }}
             key={i + char}
-            initial={calcDirection(i, string.length)}
-            animate={{
-              x:0,
-              y:0,
-              transition: {
-                duration: 1
-              }
+            custom={{
+              direction: i >= string.length / 2 ? 1 : -1,
+              length: i
             }}
+            variants={variants}
+            initial='initial'
+            animate='animate'
           >
             {char}
           </motion.span>
