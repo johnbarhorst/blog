@@ -41,7 +41,9 @@
   cursor: pointer;
   width: 100%;
 }
-
+.shuffleButton:focus {
+  outline: dashed 2px var(--darkBlue);
+}
 @media screen and (min-width: 768px) {
   .main p {
     font-size: 1.5rem;
@@ -51,5 +53,6 @@
   .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 }
