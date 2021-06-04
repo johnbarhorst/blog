@@ -5,10 +5,19 @@ type Props = {
   string: string
 }
 
+type CustomProps = {
+  index: number,
+  direction: 1 | -1,
+  length: number
+}
+
 const variants = {
-  initial: ({ length, direction }: {length: number, direction: number}) => ({
-    x: ((length + 1) * 10) * direction,
-    y: -45
+  // This doesn't seem to actually get checked anywhere :(
+  initial: ({ index, direction, length }: CustomProps) => ({
+    x: ((index + 1) * 5) * direction,
+    // TODO: I want this to be a larger number the closer to the middle it is.
+    // Seems to take math. 
+    y: -10
   }),
   animate: {
     x:0,
@@ -34,7 +43,8 @@ export function ImplodingText({ string }: Props):ReactElement {
             key={i + char}
             custom={{
               direction: i >= string.length / 2 ? 1 : -1,
-              length: i
+              index: i,
+              length: string.length
             }}
             variants={variants}
             initial='initial'
