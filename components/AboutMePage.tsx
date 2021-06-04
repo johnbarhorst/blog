@@ -5,7 +5,7 @@ export function AboutMePage():ReactElement {
   return (
     <FadeIn>
       <main>
-        <h1>More About Me.</h1>
+        <h2>More About Me.</h2>
         <p>It all started...</p>
       </main>
     </FadeIn>

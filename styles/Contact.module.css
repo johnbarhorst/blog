@@ -1,3 +1,7 @@
 .main ul {
   list-style: none;
 }
+
+.icon {
+  vertical-align: middle;
+}
