@@ -70,9 +70,15 @@ export function HomePage(): ReactElement {
   return (
     <FadeIn>
       <main className={style.main}>
-        <h3>John Barhorst</h3>
-        <p>Hi! I&apos;m John, a web developer in Minneapolis, MN.</p>
-        <p>I build fast, responsive, and accessible websites and apps in exchange for money.</p>
+        <div className={style.hero}>
+          <img src="/meandv.jpg" alt="A handsome man smooching his pupper." className={style.hero_img} />
+          <div>
+            <p>Hi! I&apos;m John, a web developer in Minneapolis, MN.</p>
+            <p>I build fast, responsive, and accessible websites and apps for fun and profit.</p>
+            <p>I am currently available to hire for both long and short term projects.</p>
+          </div>
+
+        </div>
         <div className={style.wrapper}>
           <section>
             <h4>My main tech</h4>

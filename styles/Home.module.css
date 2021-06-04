@@ -25,12 +25,18 @@
   padding: 0;
 }
 
-.wrapper li {
-  padding: 1rem;
-  background: var(--darkBlue);
-  border-radius: 10px;
-  text-align: center;
-  color: #fff;
+.hero {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  align-content: center;
+}
+
+.hero_img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 50%;
 }
 
 .shuffleButton {
@@ -41,8 +47,18 @@
   cursor: pointer;
   width: 100%;
 }
+
 .shuffleButton:focus {
   outline: dashed 2px var(--darkBlue);
+}
+
+.shuffleButton li {
+  box-shadow: var(--elevate_2);
+  padding: 1rem;
+  background: var(--darkBlue);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
 }
 @media screen and (min-width: 768px) {
   .main p {
