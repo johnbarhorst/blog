@@ -1,13 +1,25 @@
-import { MouseEvent, ReactElement, ReactNode } from 'react';
+import { MouseEvent, ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
 type Props = {
   href: string,
-  children: ReactNode
+  text: string
 }
 
-export function ActiveLink({ href, children }: Props):ReactElement {
+const anchorVariants = {
+  animate: ({ isActive }) => ({
+    color: isActive ? 'var(--red)' : 'var(--link)',
+    transition: {
+      duration: .5
+    }
+  }),
+  hover: {
+    y: -3
+  }
+};
+
+export function ActiveLink({ href, text }: Props):ReactElement {
   const router = useRouter();
 
   const isCurrentPath = (href: string, pathname: string) => {
@@ -24,21 +36,26 @@ export function ActiveLink({ href, children }: Props):ReactElement {
   };
 
   return (
-    <motion.a 
+    <motion.a
       href={href}
       onClick={handleClick}
+      custom={{ isActive }}
+      variants={anchorVariants}
       initial={false}
-      animate={{
-        color: isActive ? 'var(--red)' : 'var(--link)',
-        transition: {
-          duration: .5
-        }
-      }}
-      whileHover={{
-        y: -3
-      }}
+      animate='animate'
+      whileHover='hover'
     >
-      {children}
+      {text.split('').map((char, i) => (
+        <motion.span
+          style={{
+            display: 'inline-block',
+            whiteSpace: 'pre-wrap'
+          }}
+          key={char + i}
+          
+        >
+          {char}
+        </motion.span>))}
     </motion.a>
   );
 }

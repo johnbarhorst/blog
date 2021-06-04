@@ -10,10 +10,10 @@ export default function Header():ReactElement {
       <h3><Link href='/'>John Barhorst</Link></h3>
       <AnimateSharedLayout>
         <nav className={style.nav}>
-          <ActiveLink href='/'>Home</ActiveLink>
-          <ActiveLink href='/projects'>My Work</ActiveLink>
-          <ActiveLink href='/about'>About</ActiveLink>
-          <ActiveLink href='/contact'>Get In Touch</ActiveLink>
+          <ActiveLink href='/' text='Home' />
+          <ActiveLink href='/projects' text='My Work' />
+          <ActiveLink href='/about' text='About' />
+          <ActiveLink href='/contact' text='Get In Touch' />
         </nav>
       </AnimateSharedLayout>
     </header>
