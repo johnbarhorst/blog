@@ -26,16 +26,15 @@
 }
 
 .hero {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 3rem;
-  align-content: center;
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  align-items: center;
+  gap: 2rem;
+  height: calc(100vh - var(--headerHeight));
 }
 
 .hero_img {
   width: 100%;
-  max-width: 300px;
-  height: auto;
   border-radius: 50%;
 }
 

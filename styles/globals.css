@@ -18,19 +18,25 @@ body {
 }
 
 :root {
+  /* Colors */
   --red: #BF1A2F;
   --black: #121212;
   --darkBlue: #004E7C;
   --orange: #FF9F1C;
   --apricot: #FFBF69;
   --persianGreen: #339989;
+  --white: #fff;
+  /* Color Purposes */
   --link: #fff;
-  --primaryBG: var(--orange);
+  --primaryBG: var(--white);
   --secondaryBG: var(--darkBlue);
-  --textLight: #fff;
+  --textLight: var(--white);
   --textDark: var(--black);
+  /* Shadows */
   --elevate_1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --elevate_2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Sizes */
+  --headerHeight: 80px
 }
 
 
