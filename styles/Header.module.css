@@ -15,8 +15,7 @@
 }
 
 .nav {
-  display: flex;
-  align-items: center;
+  display: none;
 }
 
 .nav a {
@@ -28,8 +27,31 @@
   margin-left: none;
 }
 
+.hamburger {
+  display: block;
+  border: none;
+  background: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background: var(--primaryBG);
+}
+
 @media screen and (min-width: 768px) {
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+
   .nav a+a {
     margin-left: 10px;
+  }
+
+  .hamburger {
+    display: none;
   }
 }
