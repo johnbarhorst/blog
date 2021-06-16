@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 import { ActiveLink } from './ActiveLink';
 import style from 'styles/Header.module.css';
-import { AnimateSharedLayout, motion } from 'framer-motion';
+import { AnimateSharedLayout, motion, Variants } from 'framer-motion';
 import useToggle from 'hooks/useToggle';
 
-const topbarVariants = {
+const topbarVariants: Variants = {
   open: {
     y: 8,
     rotate: 45
@@ -16,19 +16,19 @@ const topbarVariants = {
   }
 };
 
-const midbarVariants = {
+const midbarVariants: Variants = {
   open: {
     opacity: 0,
     transition: {
       duration: 0
-    }
+    },
   },
   closed: {
     opacity: 1
   }
 };
 
-const bottombarVariants = {
+const bottombarVariants: Variants = {
   open: {
     y: -8,
     rotate: -45
@@ -38,6 +38,25 @@ const bottombarVariants = {
   }
 };
 
+const links = [
+  {
+    href:'/',
+    text:'Home'
+  },
+  {
+    href:'/projects',
+    text:'My Work'
+  },
+  {
+    href:'/about',
+    text:'About'
+  },
+  {
+    href:'/contact',
+    text:'Get In Touch'
+  }
+];
+
 export default function Header():ReactElement {
   const { isToggled: isOpen, toggle: toggleOpen, setToggle } = useToggle(false);
   return (
@@ -45,10 +64,7 @@ export default function Header():ReactElement {
       <h3><Link href='/'>John Barhorst</Link></h3>
       <AnimateSharedLayout>
         <nav className={style.nav}>
-          <ActiveLink href='/' text='Home' />
-          <ActiveLink href='/projects' text='My Work' />
-          <ActiveLink href='/about' text='About' />
-          <ActiveLink href='/contact' text='Get In Touch' />
+          {links.map(link => <ActiveLink href={link.href} text={link.text} key={link.text} />)}
         </nav>
         <motion.button 
           type='button' 
