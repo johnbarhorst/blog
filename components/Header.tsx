@@ -2,39 +2,19 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 import { ActiveLink } from './ActiveLink';
 import style from 'styles/Header.module.css';
-import { AnimateSharedLayout, motion, Variants } from 'framer-motion';
+import { AnimateSharedLayout, motion, Variants, AnimatePresence } from 'framer-motion';
 import useToggle from 'hooks/useToggle';
+import Hamburger from './Hamburger';
 
-const topbarVariants: Variants = {
-  open: {
-    y: 8,
-    rotate: 45
+const menuVariants: Variants = {
+  initial: {
+    left: '-100%'
   },
-  closed: {
-    y: 0,
-    rotate: 0 
-  }
-};
-
-const midbarVariants: Variants = {
-  open: {
-    opacity: 0,
-    transition: {
-      duration: 0
-    },
+  animate: {
+    left: 0
   },
-  closed: {
-    opacity: 1
-  }
-};
-
-const bottombarVariants: Variants = {
-  open: {
-    y: -8,
-    rotate: -45
-  },
-  closed: {
-    y: 0
+  exit: {
+    left: '-100%'
   }
 };
 
@@ -58,36 +38,27 @@ const links = [
 ];
 
 export default function Header():ReactElement {
-  const { isToggled: isOpen, toggle: toggleOpen, setToggle } = useToggle(false);
+  const { isToggled: isOpen, toggle: toggleOpen } = useToggle(false);
   return (
     <header className={style.header}>
       <h3><Link href='/'>John Barhorst</Link></h3>
       <AnimateSharedLayout>
-        <nav className={style.nav}>
+        <motion.nav className={style.nav}>
           {links.map(link => <ActiveLink href={link.href} text={link.text} key={link.text} />)}
-        </nav>
-        <motion.button 
-          type='button' 
-          className={style.hamburger}
-          onClick={toggleOpen}
-        >
-          <motion.span 
-            className={style.bar} 
-            variants={topbarVariants}
-            animate={isOpen ? 'open' : 'closed'}
-          ></motion.span>
-          <motion.span 
-            className={style.bar}
-            variants={midbarVariants}
-            animate={isOpen ? 'open' : 'closed'}
-          ></motion.span>
-          <motion.span 
-            className={style.bar}
-            variants={bottombarVariants}
-            animate={isOpen ? 'open' : 'closed'}
-          ></motion.span>
-        </motion.button>
+        </motion.nav>
+        <Hamburger isOpen={isOpen} toggleOpen={toggleOpen} />
       </AnimateSharedLayout>
+      <AnimatePresence>
+        {isOpen && 
+          <motion.nav 
+            variants={menuVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+            className={style.mobileNav}>
+            {links.map(link => <ActiveLink href={link.href} text={link.text} key={link.text} />)}
+          </motion.nav>}
+      </AnimatePresence>
     </header>
   );
 }
