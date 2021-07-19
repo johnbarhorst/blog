@@ -23,6 +23,7 @@ export function ActiveLink({ href, text }: Props):ReactElement {
   const router = useRouter();
 
   const isCurrentPath = (href: string, pathname: string) => {
+    // This feels a little redundant. But it fixed a few weird bugs.
     if (href === '/' && pathname === '/') return true;
     if (href !== '/') return pathname.includes(href);
     return false;
