@@ -1,5 +1,4 @@
 import { ReactElement, useState } from 'react';
-import { FadeIn } from './FadeIn';
 import style from 'styles/Home.module.css';
 import { motion } from 'framer-motion';
 
@@ -68,71 +67,69 @@ export function HomePage(): ReactElement {
   }
 
   return (
-    <FadeIn>
-      <main className={style.main}>
-        <div className={style.hero}>
-          <img src="/meandv.jpg" alt="A handsome man smooching his pupper." className={style.hero_img} />
-          <div>
-            <p>Hi! I&apos;m John, a web developer in Minneapolis, MN.</p>
-            <p>I build fast, responsive, and accessible websites and apps for fun and profit.</p>
-            <p>I am currently available to hire for both long and short term projects.</p>
-          </div>
+    <main className={style.main}>
+      <div className={style.hero}>
+        <img src="/meandv.jpg" alt="A handsome man smooching his pupper." className={style.hero_img} />
+        <div>
+          <p>Hi! I&apos;m John, a web developer in Minneapolis, MN.</p>
+          <p>I build fast, responsive, and accessible websites and apps for fun and profit.</p>
+          <p>I am currently available to hire for both long and short term projects.</p>
+        </div>
 
-        </div>
-        <div className={style.wrapper}>
-          <section>
-            <h4>My main tech</h4>
-            <button
-              type="button"
-              className={style.shuffleButton}
-              onClick={shuffleTech} 
+      </div>
+      <div className={style.wrapper}>
+        <section>
+          <h4>My main tech</h4>
+          <button
+            type="button"
+            className={style.shuffleButton}
+            onClick={shuffleTech} 
+          >
+            <motion.ul
+              variants={variants}
+              initial='initial'
+              animate='animate'
+              layout
             >
-              <motion.ul
-                variants={variants}
-                initial='initial'
-                animate='animate'
-                layout
-              >
-                {techArray.map(item => (
-                  <motion.li 
-                    variants={itemVariants}
-                    key={item}
-                    layoutId={item}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </button>
-          </section>
-          <section>
-            <h4>I like to dabble in</h4>
-            <button
-              type="button"
-              className={style.shuffleButton}
-              onClick={shuffleDabble}
+              {techArray.map(item => (
+                <motion.li 
+                  variants={itemVariants}
+                  key={item}
+                  layoutId={item}
+                >
+                  {item}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </button>
+        </section>
+        <section>
+          <h4>I like to dabble in</h4>
+          <button
+            type="button"
+            className={style.shuffleButton}
+            onClick={shuffleDabble}
+          >
+            <motion.ul
+              variants={variants}
+              initial='initial'
+              animate='animate'
+              layout
             >
-              <motion.ul
-                variants={variants}
-                initial='initial'
-                animate='animate'
-                layout
-              >
-                {dabbleArray.map(item => (
-                  <motion.li 
-                    variants={itemVariants}
-                    key={item}
-                    layoutId={item}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </button>
-          </section>
-        </div>
-      </main>
-    </FadeIn>
+              {dabbleArray.map(item => (
+                <motion.li 
+                  variants={itemVariants}
+                  key={item}
+                  layoutId={item}
+                >
+                  {item}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </button>
+        </section>
+      </div>
+    </main>
   );
 }
 

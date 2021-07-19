@@ -3,7 +3,6 @@ import { ReactElement, ReactNode } from 'react';
 import { Footer } from './Footer';
 import styles from 'styles/Layout.module.css';
 import Header from './Header';
-import { AnimatePresence } from 'framer-motion';
 
 
 export function Layout({ children }: { children: ReactNode }): ReactElement {
@@ -13,9 +12,7 @@ export function Layout({ children }: { children: ReactNode }): ReactElement {
         <title>John Barhorst | Web Developer</title>
       </Head>
       <Header />
-      <AnimatePresence exitBeforeEnter>
-        {children}
-      </AnimatePresence>
+      {children}
       <Footer />
     </div>
   );
