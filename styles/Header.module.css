@@ -23,21 +23,22 @@
   color: #fff;
 }
 
-.nav a+a {
-  margin-left: none;
-}
-
 .mobileNav {
   position: fixed;
-  top: 0;
+  top: calc(var(--headerHeight) - 1px);
   left: 0;
-  height: 100vh;
+  height: calc(100vh - var(--headerHeight));
   width: 100vw;
   background: var(--darkBlue);
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  font-size: 2rem;
+}
+
+.mobileNav ul {
+  list-style: none;
 }
 
 

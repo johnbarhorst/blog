@@ -11,10 +11,32 @@ const menuVariants: Variants = {
     left: '-100%'
   },
   animate: {
-    left: 0
+    left: 0,
+    transition: {
+      duration: .1,
+      when: 'beforeChildren',
+      staggerChildren: .1
+    }
   },
   exit: {
-    left: '-100%'
+    left: '-100%',
+    transition: {
+      duration: .1,
+      when: 'afterChildren',
+      staggerChildren: .1
+    }
+  }
+};
+
+const linkVariants: Variants = {
+  initial: {
+    x: '-100%'
+  },
+  animate: {
+    x: 0
+  },
+  exit: {
+    x: '-100%'
   }
 };
 
@@ -22,6 +44,10 @@ const links = [
   {
     href:'/',
     text:'Home'
+  },
+  {
+    href: '/blog',
+    text: 'Blog'
   },
   {
     href:'/projects',
@@ -38,7 +64,7 @@ const links = [
 ];
 
 export default function Header():ReactElement {
-  const { isToggled: isOpen, toggle: toggleOpen } = useToggle(false);
+  const { isToggled: isOpen, toggle } = useToggle(false);
   return (
     <header className={style.header}>
       <h3><Link href='/'>John Barhorst</Link></h3>
@@ -46,7 +72,7 @@ export default function Header():ReactElement {
         <motion.nav className={style.nav}>
           {links.map(link => <ActiveLink href={link.href} text={link.text} key={link.text} />)}
         </motion.nav>
-        <Hamburger isOpen={isOpen} toggleOpen={toggleOpen} />
+        <Hamburger isOpen={isOpen} toggleOpen={toggle} />
       </AnimateSharedLayout>
       <AnimatePresence>
         {isOpen && 
@@ -56,7 +82,17 @@ export default function Header():ReactElement {
             animate='animate'
             exit='exit'
             className={style.mobileNav}>
-            {links.map(link => <ActiveLink href={link.href} text={link.text} key={link.text} />)}
+            <ul>
+              {links.map(link => 
+                <motion.li
+                  key={link.text}
+                  variants={linkVariants}
+                  onClick={toggle}
+                >
+                  <ActiveLink href={link.href} text={link.text} />
+                </motion.li>
+              )}
+            </ul>
           </motion.nav>}
       </AnimatePresence>
     </header>
