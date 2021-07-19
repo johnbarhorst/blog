@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 export function BlogPage():ReactElement {
   return (
     <main>
-      <h1>Blog!</h1>
+      <h2>Blog!</h2>
     </main>
   );
 }
