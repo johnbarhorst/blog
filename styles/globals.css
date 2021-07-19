@@ -102,3 +102,6 @@ a {
   text-decoration: none;
 }
 
+a.isBody {
+  color: var(--textDark);
+}
