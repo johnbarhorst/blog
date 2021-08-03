@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-.main:last-child {
+.main div:last-child {
   margin-bottom: 5rem;
 }
 
