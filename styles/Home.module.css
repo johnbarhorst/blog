@@ -48,13 +48,13 @@
 }
 
 .shuffleButton:focus {
-  outline: dashed 2px var(--darkBlue);
+  outline: dashed 2px var(--secondaryBG);
 }
 
 .shuffleButton li {
   box-shadow: var(--elevate_2);
   padding: 1rem;
-  background: var(--darkBlue);
+  background: var(--secondaryBG);
   border-radius: 10px;
   text-align: center;
   color: #fff;
