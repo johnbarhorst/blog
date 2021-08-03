@@ -29,7 +29,7 @@
   left: 0;
   height: calc(100vh - var(--headerHeight));
   width: 100vw;
-  background: var(--darkBlue);
+  background: var(--secondaryBG);
   display: flex;
   flex-direction: column;
   justify-content: center;
