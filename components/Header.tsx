@@ -15,7 +15,8 @@ const menuVariants: Variants = {
     transition: {
       duration: .1,
       when: 'beforeChildren',
-      staggerChildren: .1
+      staggerChildren: .1,
+      damping: 300
     }
   },
   exit: {
@@ -45,14 +46,14 @@ const links = [
     href:'/',
     text:'Home'
   },
-  {
-    href: '/blog',
-    text: 'Blog'
-  },
-  {
-    href:'/projects',
-    text:'My Work'
-  },
+  // {
+  //   href: '/blog',
+  //   text: 'Blog'
+  // },
+  // {
+  //   href:'/projects',
+  //   text:'My Work'
+  // },
   {
     href:'/about',
     text:'About'
