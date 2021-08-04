@@ -9,7 +9,7 @@ type Props = {
 
 const anchorVariants = {
   animate: ({ isActive }) => ({
-    color: isActive ? 'var(--red)' : 'var(--link)',
+    color: isActive ? 'var(--teal)' : 'var(--link)',
     transition: {
       duration: .5
     }
@@ -50,7 +50,7 @@ export function ActiveLink({ href, text }: Props):ReactElement {
         <motion.span
           style={{
             display: 'inline-block',
-            whiteSpace: 'pre-wrap'
+            whiteSpace: 'pre-wrap',
           }}
           key={char + i}
           
