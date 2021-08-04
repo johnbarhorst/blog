@@ -8,9 +8,9 @@
   text-align: center;
 }
 
-.main div:last-child {
+/* .main div:last-child {
   margin-bottom: 5rem;
-}
+} */
 
 .main h3,
 .main h4 {
@@ -27,15 +27,20 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 33% 1fr;
   align-items: center;
   gap: 2rem;
   height: calc(100vh - var(--headerHeight));
 }
 
-.hero_img {
+/* .hero_img {
   width: 100%;
   border-radius: 50%;
+} */
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .shuffleButton {

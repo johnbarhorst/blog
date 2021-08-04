@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import style from 'styles/Home.module.css';
 import { motion } from 'framer-motion';
 
@@ -23,6 +23,13 @@ const itemVariants = {
   animate: { y:0, opacity: 1 }
 };
 
+const rotatingTitles = [
+  'Web Developer',
+  'Dog Dad',
+  'Hearthstone Player',
+  'React Developer'
+];
+
 const initTechArray = [
   'React.js', 
   'Next.js',
@@ -39,10 +46,25 @@ const initDabbleArray = [
   'Sass'
 ];
 
+const wrapNumber = (min:number, max:number, num:number): number => {
+  const rangeSize = max - min;
+  return ((((num - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
 
 export function HomePage(): ReactElement {
   const [techArray, setTechArray] = useState(initTechArray);
   const [dabbleArray, setDabbleArray] = useState(initDabbleArray);
+  const [rotatingTitle, setRotatingTitle] = useState(0);
+
+  useEffect(() => {
+    const changeTitle = setTimeout(() => {
+      setRotatingTitle(prev => wrapNumber(0, rotatingTitles.length - 1, prev));
+    }, 3000);
+    return () => {
+      clearTimeout(changeTitle);
+    };
+  }, [rotatingTitle]);
 
   function shuffle(arr: string[]): string[] {
     const newArr = [...arr];
@@ -68,15 +90,11 @@ export function HomePage(): ReactElement {
 
   return (
     <main className={style.main}>
-      <div className={style.hero}>
-        <img src="/meandv.jpg" alt="A handsome man smooching his pupper." className={style.hero_img} />
-        <div>
-          <p>Hi! I&apos;m John, a web developer in Minneapolis, MN.</p>
-          <p>I build fast, responsive, and accessible websites and apps for fun and profit.</p>
-          <p>I am currently available to hire for both long and short term projects.</p>
+      <section className={style.hero}>
+        <div className={style.banner}>
+          <h2>John Barhorst</h2><span>|</span><motion.h3>{rotatingTitles[rotatingTitle]}</motion.h3>
         </div>
-
-      </div>
+      </section>
       <div className={style.wrapper}>
         <section>
           <h4>My main tech</h4>
