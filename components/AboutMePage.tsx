@@ -4,7 +4,8 @@ export function AboutMePage():ReactElement {
   return (
     <main>
       <h2>More About Me.</h2>
-      <p>It all started...</p>
+      <p>I
+        I&apos;ve been building for the web since 2015. While I primarily have focused on react based web development, I enjoy learning all things web related.</p>
     </main>
   );
 }
