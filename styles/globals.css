@@ -22,6 +22,7 @@ body {
   --red: #BF1A2F;
   --black: #121212;
   --darkBlue: #004E7C;
+  --teal: #69a1c2;
   --orange: #FF9F1C;
   --apricot: #FFBF69;
   --forestGreen: #004E4C;
@@ -30,7 +31,7 @@ body {
   /* Color Purposes */
   --link: #fff;
   --primaryBG: var(--white);
-  --secondaryBG: var(--darkBlue);
+  --secondaryBG: var(--forestGreen);
   --textLight: var(--white);
   --textDark: var(--black);
   /* Shadows */
