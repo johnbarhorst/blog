@@ -8,15 +8,6 @@
   text-align: center;
 }
 
-/* .main div:last-child {
-  margin-bottom: 5rem;
-} */
-
-.main h3,
-.main h4 {
-  text-align: center;
-}
-
 .wrapper ul {
   list-style: none;
   display: grid;

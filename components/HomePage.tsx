@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react';
 import style from 'styles/Home.module.css';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const variants = {
   initial: {
@@ -23,7 +23,7 @@ const itemVariants = {
   animate: { y:0, opacity: 1 }
 };
 
-const rotatingTitles = [
+const rotatingTitleList = [
   'Web Developer',
   'Dog Dad',
   'Hearthstone Player',
@@ -59,12 +59,12 @@ export function HomePage(): ReactElement {
 
   useEffect(() => {
     const changeTitle = setTimeout(() => {
-      setRotatingTitle(prev => wrapNumber(0, rotatingTitles.length - 1, prev));
-    }, 3000);
+      setRotatingTitle(prev => wrapNumber(0, rotatingTitleList.length - 1, prev + 1));
+    }, 5000);
     return () => {
       clearTimeout(changeTitle);
     };
-  }, [rotatingTitle]);
+  });
 
   function shuffle(arr: string[]): string[] {
     const newArr = [...arr];
@@ -92,7 +92,23 @@ export function HomePage(): ReactElement {
     <main className={style.main}>
       <section className={style.hero}>
         <div className={style.banner}>
-          <h2>John Barhorst</h2><span>|</span><motion.h3>{rotatingTitles[rotatingTitle]}</motion.h3>
+          <h2>John Barhorst</h2>
+          <span>|</span>
+          {/* TODO: Need an overflow hidden element to hide the text as it slides */}
+          <AnimatePresence exitBeforeEnter>
+            {rotatingTitleList
+              .filter((_, i) => i === rotatingTitle)
+              .map((text, i) => 
+                <motion.h3
+                  className={style.rotatingTitle}
+                  key={i + text}
+                  initial={{ x: -300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x:-300, opacity: 0 }}
+                >{text}</motion.h3>
+              )
+            }
+          </AnimatePresence>
         </div>
       </section>
       <div className={style.wrapper}>
