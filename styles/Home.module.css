@@ -29,9 +29,15 @@
 } */
 
 .banner {
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  grid-template-columns: 48% 2% 48%;
+}
+
+.banner h3,
+.banner h4 {
+  margin: 0;
 }
 
 .shuffleButton {

@@ -99,13 +99,13 @@ export function HomePage(): ReactElement {
             {rotatingTitleList
               .filter((_, i) => i === rotatingTitle)
               .map((text, i) => 
-                <motion.h3
+                <motion.h4
                   className={style.rotatingTitle}
                   key={i + text}
                   initial={{ x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x:-300, opacity: 0 }}
-                >{text}</motion.h3>
+                >{text}</motion.h4>
               )
             }
           </AnimatePresence>
