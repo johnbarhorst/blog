@@ -93,7 +93,7 @@ export function HomePage(): ReactElement {
       <section className={style.hero}>
         <div className={style.banner}>
           <h2>John Barhorst</h2>
-          <span>|</span>
+          <span className='isHiddenMobile'>|</span>
           {/* TODO: Need an overflow hidden element to hide the text as it slides */}
           <div className={style.hideOverflow}>
             <AnimatePresence exitBeforeEnter>
