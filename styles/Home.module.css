@@ -40,6 +40,11 @@
   margin: 0;
 }
 
+.hideOverflow {
+  text-align: center;
+  overflow: hidden;
+}
+
 .shuffleButton {
   padding: 0;
   margin: 0;

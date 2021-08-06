@@ -95,20 +95,22 @@ export function HomePage(): ReactElement {
           <h2>John Barhorst</h2>
           <span>|</span>
           {/* TODO: Need an overflow hidden element to hide the text as it slides */}
-          <AnimatePresence exitBeforeEnter>
-            {rotatingTitleList
-              .filter((_, i) => i === rotatingTitle)
-              .map((text, i) => 
-                <motion.h4
-                  className={style.rotatingTitle}
-                  key={i + text}
-                  initial={{ x: -300, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x:-300, opacity: 0 }}
-                >{text}</motion.h4>
-              )
-            }
-          </AnimatePresence>
+          <div className={style.hideOverflow}>
+            <AnimatePresence exitBeforeEnter>
+              {rotatingTitleList
+                .filter((_, i) => i === rotatingTitle)
+                .map((text, i) => 
+                  <motion.h4
+                    className={style.rotatingTitle}
+                    key={i + text}
+                    initial={{ x: -300, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x:-300, opacity: 0 }}
+                  >{text}</motion.h4>
+                )
+              }
+            </AnimatePresence>
+          </div>
         </div>
       </section>
       <div className={style.wrapper}>
