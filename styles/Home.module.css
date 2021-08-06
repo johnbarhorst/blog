@@ -23,22 +23,10 @@
   height: calc(100vh - var(--headerHeight));
 }
 
-/* .hero_img {
-  width: 100%;
-  border-radius: 50%;
-} */
-
 .banner {
-  display: grid;
-  align-items: center;
-  justify-content: space-evenly;
-  grid-template-columns: 48% 2% 48%;
+  text-align: center;
 }
 
-.banner h3,
-.banner h4 {
-  margin: 0;
-}
 
 .hideOverflow {
   text-align: center;
@@ -77,4 +65,16 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
+
+  .banner {
+    display: grid;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-template-columns: 48% 2% 48%;
+  }
+
+  .banner h3,
+  .banner h4 {
+    margin: 0;
+    }
 }
