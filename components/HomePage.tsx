@@ -25,6 +25,7 @@ const itemVariants = {
 
 const rotatingTitleList = [
   'Web Developer',
+  'Problem Solver',
   'Dog Dad',
   'Hearthstone Player',
   'React Developer'
@@ -59,7 +60,7 @@ export function HomePage(): ReactElement {
 
   useEffect(() => {
     const changeTitle = setTimeout(() => {
-      setRotatingTitle(prev => wrapNumber(0, rotatingTitleList.length - 1, prev + 1));
+      setRotatingTitle(prev => wrapNumber(0, rotatingTitleList.length, prev + 1));
     }, 5000);
     return () => {
       clearTimeout(changeTitle);
