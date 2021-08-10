@@ -94,7 +94,6 @@ export function HomePage(): ReactElement {
         <div className={style.banner}>
           <h2>John Barhorst</h2>
           <span className='isHiddenMobile'>|</span>
-          {/* TODO: Need an overflow hidden element to hide the text as it slides */}
           <div className={style.hideOverflow}>
             <AnimatePresence exitBeforeEnter>
               {rotatingTitleList

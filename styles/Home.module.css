@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.wrapper {
+  margin-bottom: 4rem;
+}
+
 .wrapper ul {
   list-style: none;
   display: grid;
