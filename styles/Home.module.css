@@ -47,12 +47,10 @@
 }
 
 .shuffleButton li {
-  box-shadow: var(--elevate_2);
-  padding: 1rem;
-  background: var(--secondaryBG);
-  border-radius: 10px;
-  text-align: center;
-  color: #fff;
+  padding: 1rem 2rem;
+  border: 2px solid var(--textDark);
+  font-size: 1.1rem;
+  text-align: start;
 }
 @media screen and (min-width: 768px) {
   .main p {
@@ -73,7 +71,7 @@
     grid-template-columns: 48% 2% 48%;
   }
 
-  .banner h3,
+  .banner h2,
   .banner h4 {
     margin: 0;
     }
