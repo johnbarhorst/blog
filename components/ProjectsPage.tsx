@@ -6,7 +6,7 @@ export function ProjectsPage():ReactElement {
     <main className={style.main}>
       <h2>My Projects</h2>
       <section>
-        <p>I have projects. They were good. I swear.</p>
+        <p>I have projects. They are good. I swear. Now for a longer sentence for testing purposes,</p>
       </section>
     </main>
   );

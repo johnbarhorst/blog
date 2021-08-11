@@ -28,12 +28,15 @@ body {
   --forestGreen: #004E4C;
   --persianGreen: #339989;
   --white: #fff;
+  --redRadial: radial-gradient(circle at left bottom, rgba(74,3,11,1) 19%, rgba(130,8,56,1) 43%, rgba(82,5,35,1) 88%);
   /* Color Purposes */
   --link: #fff;
-  --primaryBG: var(--white);
+  --primaryBG: var(--redRadial);
   --secondaryBG: var(--forestGreen);
   --textLight: var(--white);
   --textDark: var(--black);
+  --textPrimary: var(--textLight);
+  --textSecondary: var(--textDark);
   /* Shadows */
   --elevate_1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --elevate_2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -45,11 +48,12 @@ body {
 /*16px*/
 
 body {
+  background: rgb(74,3,11);
   background: var(--primaryBG);
   font-family: 'Esteban', serif;
   font-weight: 400;
   line-height: 1.75;
-  color: var(--textDark);
+  color: var(--textPrimary);
 }
 
 p {
@@ -100,12 +104,12 @@ small,
 
 
 a {
-  color: var(--textLight);
+  color: var(--textPrimary);
   text-decoration: none;
 }
 
 a.isBody {
-  color: var(--textDark);
+  color: var(--textSecondary);
 }
 
 @media screen and (max-width: 768px) {

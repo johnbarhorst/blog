@@ -4,7 +4,6 @@
   align-items: center;
   height: 5rem;
   padding: 0 1rem;
-  background: var(--secondaryBG);
   text-transform: lowercase;
   box-shadow: 0px 1px 14px rgb(0 0 0 / 50%);
 }
@@ -24,12 +23,12 @@
 }
 
 .mobileNav {
+  background: var(--primaryBG);
   position: fixed;
   top: calc(var(--headerHeight) - 1px);
   left: 0;
   height: calc(100vh - var(--headerHeight));
   width: 100vw;
-  background: var(--secondaryBG);
   display: flex;
   flex-direction: column;
   justify-content: center;
