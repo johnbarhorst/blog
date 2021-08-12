@@ -1,7 +1,15 @@
+.main {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 .main ul {
   list-style: none;
 }
 
 .icon {
   vertical-align: middle;
+  height: 1rem;
+  width: 1rem;
+  margin: .5rem;
 }
