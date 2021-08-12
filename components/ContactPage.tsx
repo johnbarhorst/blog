@@ -10,7 +10,7 @@ export function ContactPage():ReactElement {
       <ul>
         <li><a href='mailto:johnbarhorst.dev@gmail.com'><HiOutlineMail className={style.icon} />  johnbarhorst.dev@gmail.com</a></li>
         <li><a href="tel:1-651-253-2911"><HiOutlinePhone className={style.icon} />  651-253-2911</a></li>
-        <li><a href='https://github.com/johnbarhorst'><img src='/icons/GitHub-Mark-Light-32px.png' className={style.icon} /> github.com/johnbarhorst</a></li>
+        <li><a href='https://github.com/johnbarhorst' target="_blank" rel="noopener noreferrer"><img src='/icons/GitHub-Mark-Light-32px.png' className={style.icon} /> github.com/johnbarhorst</a></li>
       </ul>
     </main>
   );
