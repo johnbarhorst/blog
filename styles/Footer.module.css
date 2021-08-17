@@ -1,18 +1,12 @@
 .footer {
   width: 100%;
   height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: var(--textPrimary);
+  text-align: center;
 }
 
-.footer img {
-  margin-left: 0.5rem;
+.footer p {
+  padding: 0;
+  margin: 0;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
