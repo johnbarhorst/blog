@@ -5,7 +5,7 @@ import style from 'styles/Icons.module.css';
 
 export function EmailLinkIcon({ children }: {children?: ReactNode}):ReactElement {
   return (
-    <a href='mailto:johnbarhorst.dev@gmail.com'><HiOutlineMail className={style.icon} />{children}</a>
+    <a href='mailto:john@johnbarhorst.com'><HiOutlineMail className={style.icon} />{children}</a>
   );
 }
 
