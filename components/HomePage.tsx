@@ -1,7 +1,8 @@
 import { ReactElement, useState } from 'react';
 import style from 'styles/Home.module.css';
-import { motion } from 'framer-motion';
+import { motion, useTransform, useViewportScroll } from 'framer-motion';
 import { SlidingText } from './SlidingText';
+import { useEffect } from 'react';
 
 const variants = {
   initial: {
@@ -48,23 +49,38 @@ const initDabbleArray = [
   'Sass'
 ];
 
+function shuffle(arr: string[]): string[] {
+  const newArr = [...arr];
+  let currentIndex = newArr.length;
+  let tempValue: string, randomIndex: number;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    tempValue = newArr[currentIndex];
+    newArr[currentIndex] = newArr[randomIndex];
+    newArr[randomIndex] = tempValue;
+  }
+  return newArr;
+}
+
+const scrollThreshold = .4;
+
 export function HomePage(): ReactElement {
   const [techArray, setTechArray] = useState(initTechArray);
   const [dabbleArray, setDabbleArray] = useState(initDabbleArray);
+  const [isPassedThreshold, setIsPassedThreshold] = useState(false);
+  const { scrollYProgress } = useViewportScroll();
+  const yRange = useTransform(scrollYProgress, [0, 0.9], [0,1]);
 
-  function shuffle(arr: string[]): string[] {
-    const newArr = [...arr];
-    let currentIndex = newArr.length;
-    let tempValue: string, randomIndex: number;
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      tempValue = newArr[currentIndex];
-      newArr[currentIndex] = newArr[randomIndex];
-      newArr[randomIndex] = tempValue;
-    }
-    return newArr;
-  }
+  useEffect(() =>
+    // v = float from 0-1 with 0 being not at all scrolled down and 1 being all the way scrolled down
+    yRange.onChange(v => {
+      if(v >= scrollThreshold) {
+        console.log('triggered');
+        setIsPassedThreshold(true);
+      }
+    }), 
+  [yRange]);
 
   function shuffleTech() {
     setTechArray(prev => shuffle(prev));
@@ -76,13 +92,19 @@ export function HomePage(): ReactElement {
 
   return (
     <main className={style.main}>
-      <section className={style.hero}>
-        <div className={style.banner}>
+      <motion.section 
+        className={style.hero}
+        animate={isPassedThreshold ? { height: 'auto' } : null}
+      >
+        <motion.div 
+          className={style.banner}
+          layout 
+        >
           <h2>John Barhorst</h2>
           <span className='isHiddenMobile'>|</span>
           <SlidingText textArray={rotatingTitleList} />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
       <div className={style.wrapper}>
         <section>
           <h4>My main tech</h4>
