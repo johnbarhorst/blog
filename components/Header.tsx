@@ -12,8 +12,6 @@ export default function Header():ReactElement {
 
   const prefersReducedMotion = useReducedMotion();
 
-  console.log('reduce motion', prefersReducedMotion);
-
   return (
     <header className={style.header}>
       <h3><Link href='/'>John Barhorst</Link></h3>
