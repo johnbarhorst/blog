@@ -1,6 +1,7 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import style from 'styles/Home.module.css';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { SlidingText } from './SlidingText';
 
 const variants = {
   initial: {
@@ -47,25 +48,9 @@ const initDabbleArray = [
   'Sass'
 ];
 
-const wrapNumber = (min:number, max:number, num:number): number => {
-  const rangeSize = max - min;
-  return ((((num - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
-
-
 export function HomePage(): ReactElement {
   const [techArray, setTechArray] = useState(initTechArray);
   const [dabbleArray, setDabbleArray] = useState(initDabbleArray);
-  const [rotatingTitle, setRotatingTitle] = useState(0);
-
-  useEffect(() => {
-    const changeTitle = setTimeout(() => {
-      setRotatingTitle(prev => wrapNumber(0, rotatingTitleList.length, prev + 1));
-    }, 5000);
-    return () => {
-      clearTimeout(changeTitle);
-    };
-  });
 
   function shuffle(arr: string[]): string[] {
     const newArr = [...arr];
@@ -95,22 +80,7 @@ export function HomePage(): ReactElement {
         <div className={style.banner}>
           <h2>John Barhorst</h2>
           <span className='isHiddenMobile'>|</span>
-          <div className={style.hideOverflow}>
-            <AnimatePresence exitBeforeEnter>
-              {rotatingTitleList
-                .filter((_, i) => i === rotatingTitle)
-                .map((text, i) => 
-                  <motion.h4
-                    className={style.rotatingTitle}
-                    key={i + text}
-                    initial={{ x: -300, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x:-300, opacity: 0 }}
-                  >{text}</motion.h4>
-                )
-              }
-            </AnimatePresence>
-          </div>
+          <SlidingText textArray={rotatingTitleList} />
         </div>
       </section>
       <div className={style.wrapper}>
