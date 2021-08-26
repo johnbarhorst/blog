@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ReactElement, useEffect, useState } from 'react';
 
 type Props = {
@@ -12,6 +12,7 @@ const wrapNumber = (min:number, max:number, num:number): number => {
 
 export function SlidingText({ textArray }: Props):ReactElement {
   const [rotatingTitle, setRotatingTitle] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const changeTitle = setTimeout(() => {
@@ -30,9 +31,9 @@ export function SlidingText({ textArray }: Props):ReactElement {
           .map((text, i) => 
             <motion.h4
               key={i + text}
-              initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x:-300, opacity: 0 }}
+              initial={prefersReducedMotion ? { opacity: 0 } : { x: -300, opacity: 0 }}
+              animate={prefersReducedMotion ? { opacity: 1 } : { x: 0, opacity: 1 }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { x:-300, opacity: 0 }}
             >{text}</motion.h4>
           )
         }
