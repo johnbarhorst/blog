@@ -6,6 +6,28 @@ import { AnimateSharedLayout, motion, Variants, AnimatePresence, useReducedMotio
 import useToggle from 'hooks/useToggle';
 import Hamburger from './Hamburger';
 
+const links = [
+  {
+    href:'/',
+    text:'Home'
+  },
+  // {
+  //   href: '/blog',
+  //   text: 'Blog'
+  // },
+  {
+    href:'/projects',
+    text:'Digital Garden'
+  },
+  // {
+  //   href:'/about',
+  //   text:'About'
+  // },
+  {
+    href:'/contact',
+    text:'Get In Touch'
+  }
+];
 
 export default function Header():ReactElement {
   const { isToggled: isOpen, toggle } = useToggle(false);
@@ -115,26 +137,3 @@ const reducedMotionLinkVariants: Variants = {
     opacity: 0
   }
 };
-
-const links = [
-  {
-    href:'/',
-    text:'Home'
-  },
-  // {
-  //   href: '/blog',
-  //   text: 'Blog'
-  // },
-  // {
-  //   href:'/projects',
-  //   text:'My Work'
-  // },
-  {
-    href:'/about',
-    text:'About'
-  },
-  {
-    href:'/contact',
-    text:'Get In Touch'
-  }
-];
