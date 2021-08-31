@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactElement } from 'react';
 
-type Props = {
+interface Props {
   placeHolder?: string
 }
 
