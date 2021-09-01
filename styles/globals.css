@@ -113,6 +113,10 @@ a.isBody {
   color: var(--textSecondary);
 }
 
+.text_center {
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
   .isHiddenMobile {
     display: none;
