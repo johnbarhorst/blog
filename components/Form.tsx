@@ -6,6 +6,7 @@ export function Form():ReactElement {
   const [name] = useInput();
   const [email] = useInput();
   const [password] = useInput();
+  const [passwordMatch] = useInput();
   const [isLoading, setIsLoading] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
@@ -15,7 +16,8 @@ export function Form():ReactElement {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={style.form} >
+    <form onSubmit={handleSubmit} className={style.form}>
+      <h2 className='text_center'>Sign up for this rad thing!</h2>
       <fieldset disabled={isLoading}>
         <div>
           <label htmlFor="name">Name
@@ -30,6 +32,11 @@ export function Form():ReactElement {
         <div>
           <label htmlFor="password">Password
             <input type="password" {...password} />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="passwordMatch">Confirm Password
+            <input type="password" {...passwordMatch} />
           </label>
         </div>
         <div>

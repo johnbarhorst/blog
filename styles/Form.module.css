@@ -1,6 +1,13 @@
+.form {
+  background: var(--secondaryBG);
+  margin: 0 auto;
+  max-width: 90%;
+  padding: .75rem;
+}
 
-.form > div {
-  margin: 0 auto .75rem;
+
+.form fieldset > div {
+  margin: 0 auto 0.75rem;
 }
 
 .form fieldset {
@@ -32,11 +39,12 @@
   border: 0;
   color: var(--textPrimary);
   font-size: 1rem;
-  background: var(--secondaryBG);
+  background: var(--orange);
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
-  padding: 0.25rem 0.5rem;
+  padding: 1rem 0.75rem;
   margin: 0.25rem;
+  border-radius: 10px;
   cursor: pointer;
 }
