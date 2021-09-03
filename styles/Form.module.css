@@ -1,6 +1,8 @@
 .form {
-  background: var(--secondaryBG);
-  margin: 0 auto;
+  background: var(--teal);
+  color: var(--black);
+  border-radius: 15px;
+  margin: 5rem auto;
   max-width: 90%;
   padding: .75rem;
 }
@@ -39,7 +41,7 @@
   border: 0;
   color: var(--textPrimary);
   font-size: 1rem;
-  background: var(--orange);
+  background: var(--red);
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
