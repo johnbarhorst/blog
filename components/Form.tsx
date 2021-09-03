@@ -1,5 +1,5 @@
 import { useInput } from 'hooks/useInput';
-import { FormEvent, ReactElement, useState } from 'react';
+import { FormEvent, ReactElement, useEffect, useState } from 'react';
 import style from 'styles/Form.module.css';
 
 export function Form():ReactElement {
@@ -7,7 +7,15 @@ export function Form():ReactElement {
   const [email] = useInput();
   const [password] = useInput();
   const [passwordMatch] = useInput();
+  const [pwIsMatching, setPWisMatching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    if(password.value === passwordMatch.value) {
+      return setPWisMatching(true);
+    }
+    setPWisMatching(false);
+  }, [password, passwordMatch]);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -35,6 +43,7 @@ export function Form():ReactElement {
           </label>
         </div>
         <div>
+          {!pwIsMatching && <span>Password Doesn&apos;t match!</span>}
           <label htmlFor="passwordMatch">Confirm Password
             <input type="password" {...passwordMatch} />
           </label>
