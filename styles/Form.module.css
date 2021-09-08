@@ -12,8 +12,8 @@
   margin: 0 auto 0.75rem;
 }
 
-.form fieldset:last-child {
-  margin-bottom: 3rem;
+.form fieldset div:last-child {
+  margin: 2rem auto 3rem;
 }
 
 .form fieldset {
@@ -37,8 +37,9 @@
 
 .form input {
   border-radius: 5px;
-  padding: 4px 6px;
+  padding: 6px 8px;
   font-size: 1.25rem;
+  border: none;
 }
 
 .form button {
