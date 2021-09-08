@@ -12,6 +12,10 @@
   margin: 0 auto 0.75rem;
 }
 
+.form fieldset:last-child {
+  margin-bottom: 3rem;
+}
+
 .form fieldset {
   display: grid;
   justify-content: center;
