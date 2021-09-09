@@ -20,7 +20,7 @@ export function Form():ReactElement {
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 3000);
+    setTimeout(() => setIsLoading(false), 2000);
   }
 
   return (
