@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Form } from './Form';
+import { Form } from 'components/Form';
 
 export function FormPage():ReactElement {
   return (

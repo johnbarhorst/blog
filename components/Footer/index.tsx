@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import styles from 'styles/Footer.module.css';
-import { EmailLinkIcon, GithubLinkIcon, PhoneLinkIcon } from './Icons';
+import styles from './Footer.module.css';
+import { EmailLinkIcon, GithubLinkIcon, PhoneLinkIcon } from 'components/Icons';
 
 
 export function Footer(): ReactElement {

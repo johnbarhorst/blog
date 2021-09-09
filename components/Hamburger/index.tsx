@@ -1,6 +1,6 @@
 import { motion, Variants } from 'framer-motion';
 import { ReactElement } from 'react';
-import style from 'styles/Hamburger.module.css';
+import style from './Hamburger.module.css';
 
 type Props = {
   isOpen: boolean,
@@ -40,7 +40,7 @@ const bottombarVariants: Variants = {
   }
 };
 
-export default function Hamburger({ isOpen, toggleOpen }: Props):ReactElement {
+export function Hamburger({ isOpen, toggleOpen }: Props):ReactElement {
   return (
     <motion.button 
       type='button' 
