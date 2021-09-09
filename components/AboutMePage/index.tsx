@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import style from 'styles/AboutMe.module.css';
+import style from './AboutMe.module.css';
 
 export function AboutMePage():ReactElement {
   return (

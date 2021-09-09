@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
-import style from 'styles/Home.module.css';
+import style from './HomePage.module.css';
 import { motion } from 'framer-motion';
-import { SlidingText } from './SlidingText';
+import { SlidingText } from '../SlidingText';
 
 const variants = {
   initial: {

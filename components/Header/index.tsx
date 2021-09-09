@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { ReactElement } from 'react';
-import { ActiveLink } from './ActiveLink';
-import style from 'styles/Header.module.css';
+import { ActiveLink } from '../ActiveLink';
+import style from './Header.module.css';
 import { AnimateSharedLayout, motion, Variants, AnimatePresence, useReducedMotion } from 'framer-motion';
 import useToggle from 'hooks/useToggle';
-import Hamburger from './Hamburger';
+import { Hamburger } from 'components/Hamburger';
 
 const links = [
   {

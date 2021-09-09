@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
-import style from 'styles/Icons.module.css';
+import style from './Icons.module.css';
 
 
 export function EmailLinkIcon({ children }: {children?: ReactNode}):ReactElement {

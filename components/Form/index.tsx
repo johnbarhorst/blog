@@ -1,6 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent, ReactElement, useEffect, useState } from 'react';
-import style from 'styles/Form.module.css';
+import style from './Form.module.css';
 
 export function Form():ReactElement {
   const [name] = useInput();

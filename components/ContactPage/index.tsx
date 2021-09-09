@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import style from 'styles/Contact.module.css';
-import { EmailLinkIcon, GithubLinkIcon, PhoneLinkIcon } from './Icons';
+import style from './Contact.module.css';
+import { EmailLinkIcon, GithubLinkIcon, PhoneLinkIcon } from 'components/Icons';
 
 export function ContactPage():ReactElement {
   return (

@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { ReactElement, ReactNode } from 'react';
-import { Footer } from './Footer';
-import styles from 'styles/Layout.module.css';
-import Header from './Header';
+import { Footer } from '../Footer';
+import styles from './Layout.module.css';
+import Header from '../Header';
 
 
 export function Layout({ children }: { children: ReactNode }): ReactElement {
