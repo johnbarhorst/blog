@@ -4,7 +4,7 @@ import { Form } from './Form';
 export function FormPage():ReactElement {
   return (
     <main>
-      <h1 className='text_center' >A Form of Fun!</h1>
+      <h1 className='text_center' >A Form of Fun</h1>
       <section>
         <Form />
       </section>
