@@ -5,7 +5,7 @@ import { EmailLinkIcon, GithubLinkIcon, PhoneLinkIcon } from './Icons';
 export function ContactPage():ReactElement {
   return (
     <main className={style.main}>
-      <h2>Contact!</h2>
+      <h1 className='text_center'>Contact!</h1>
       <p>Thanks to the wonders of technology, you can get a hold of me in a variety of ways.</p>
       <ul>
         <li><EmailLinkIcon>&nbsp;johnbarhorst.dev@gmail.com</EmailLinkIcon></li>
