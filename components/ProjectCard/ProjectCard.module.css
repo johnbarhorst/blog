@@ -1,0 +1,5 @@
+.card {
+  box-shadow: var(--elevate_2);
+  padding: 2rem;
+  text-align: center;
+}
