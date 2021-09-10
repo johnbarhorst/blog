@@ -1,3 +1,9 @@
-.main {
-  text-align: center;
+
+
+@media screen and (min-width: 768px) {
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 90%;
+  }
 }
