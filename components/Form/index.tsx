@@ -29,23 +29,23 @@ export function Form():ReactElement {
       <fieldset disabled={isLoading}>
         <div>
           <label htmlFor="name">Name
-            <input type="text" {...name} />
+            <span><input type="text" {...name} /></span>
           </label>
         </div>
         <div>
           <label htmlFor="email">Email
-            <input type="email" {...email} />
+            <span><input type="email" {...email} /></span>
           </label>
         </div>
         <div>
           <label htmlFor="password">Password
-            <input type="password" {...password} />
+            <span><input type="password" {...password} /></span>
           </label>
         </div>
         <div>
           {!pwIsMatching && <span>Password Doesn&apos;t match!</span>}
           <label htmlFor="passwordMatch">Confirm Password
-            <input type="password" {...passwordMatch} />
+            <span><input type="password" {...passwordMatch} /></span>
           </label>
         </div>
         <div>
