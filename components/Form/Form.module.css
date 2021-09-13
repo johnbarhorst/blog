@@ -1,5 +1,5 @@
 .form {
-  background: var(--teal);
+  background: var(--lightBlueGradient);
   color: var(--black);
   border-radius: 15px;
   margin: 5rem auto;
@@ -35,6 +35,11 @@
   margin-bottom: .25rem;
 }
 
+.form span {
+  position: relative;
+  display: block;
+}
+
 .form input {
   border-radius: 5px;
   margin: .25rem;
@@ -42,6 +47,17 @@
   font-size: 1.25rem;
   border: none;
 }
+
+.form span:focus-within::before {
+  outline: none;
+  content: '';
+  position: absolute;
+  display: block;
+  inset: -7px -4px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
 
 .form button {
   border: 0;
