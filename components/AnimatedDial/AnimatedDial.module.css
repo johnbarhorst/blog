@@ -1,0 +1,23 @@
+.dial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--textDark);
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background: var(--lightBlueGradient);
+  cursor: pointer;
+  margin: 2rem;
+}
+
+.innerDial {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: var(--redRadial);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
