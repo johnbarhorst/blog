@@ -51,13 +51,13 @@ export function AnimatedDial():ReactElement {
       clientHeight, 
     } = dialRef.current;
     const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
-    const oldX = info.point.x - info.offset.x;
-    const oldY = info.point.y - info.offset.y;
+    const oldX = info.point.x - info.delta.x;
+    const oldY = info.point.y - info.delta.y;
     const mouseX = info.point.x;
     const mouseY = info.point.y;
     const direction = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
 
-    console.log(Math.sign(direction) > 0 ? 'clockwise' : 'counter-clockwise');
+    Math.sign(direction) > 0 ? setValue(prev => prev + 1) : setValue(prev => prev - 1);
   }
 
 
