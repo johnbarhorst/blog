@@ -55,9 +55,16 @@ export function AnimatedDial():ReactElement {
     const oldY = info.point.y - info.delta.y;
     const mouseX = info.point.x;
     const mouseY = info.point.y;
-    const direction = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
+    // 1 = clockwise, -1 = counter clockwise, 0 = no movement (but mouse is still down and event is firing)
+    const direction = Math.sign(getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY }));
 
-    Math.sign(direction) > 0 ? setValue(prev => prev + 1) : setValue(prev => prev - 1);
+    if(direction > 0) {
+      setValue(prev => prev + 1);
+    }
+    if(direction < 0) {
+      setValue(prev => prev - 1);
+    }
+    
   }
 
 
