@@ -39,9 +39,21 @@ function getAngle({  centerX, centerY, oldX, oldY, mouseX, mouseY }: GetAngleArg
   return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
 }
 
+const threshold = .75;
+
 export function AnimatedDial():ReactElement {
   const [value, setValue] = useState(0);
+  const [cumulativeDistance, setCumulativeDistance] = useState(0);
+  const [lastDirection, setLastDirection] = useState(0);
   const dialRef = useRef<HTMLDivElement>(null);
+
+  function increment():void {
+    setValue(prev => prev + 1);
+  }
+
+  function decrement():void {
+    setValue(prev => prev - 1);
+  }
 
   function onPan(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo):void {
     const {
@@ -55,16 +67,23 @@ export function AnimatedDial():ReactElement {
     const oldY = info.point.y - info.delta.y;
     const mouseX = info.point.x;
     const mouseY = info.point.y;
+    const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
     // 1 = clockwise, -1 = counter clockwise, 0 = no movement (but mouse is still down and event is firing)
-    const direction = Math.sign(getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY }));
+    const direction = Math.sign(angle);
 
-    if(direction > 0) {
-      setValue(prev => prev + 1);
+    if(direction === 0) return;
+
+    if(direction !== lastDirection) {
+      setCumulativeDistance(0);
+      return setLastDirection(direction);
     }
-    if(direction < 0) {
-      setValue(prev => prev - 1);
+
+    if(cumulativeDistance > threshold) {
+      setCumulativeDistance(0);
+      return direction > 0 ? increment() : decrement();
     }
-    
+
+    setCumulativeDistance(prev => prev + Math.abs(angle));
   }
 
 
