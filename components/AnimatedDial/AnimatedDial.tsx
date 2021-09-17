@@ -39,6 +39,7 @@ function getAngle({  centerX, centerY, oldX, oldY, mouseX, mouseY }: GetAngleArg
   return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
 }
 
+// roughly 6.6 would be one full rotation (might depend on the element size?)
 const threshold = .75;
 
 export function AnimatedDial():ReactElement {
