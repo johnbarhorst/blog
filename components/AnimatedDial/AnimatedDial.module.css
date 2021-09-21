@@ -10,6 +10,7 @@
   background: var(--lightBlueGradient);
   cursor: pointer;
   margin: 2rem;
+  touch-action: none;
 }
 
 .innerDial {
