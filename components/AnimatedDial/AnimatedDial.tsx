@@ -1,4 +1,4 @@
-import { motion, PanInfo } from 'framer-motion';
+import { motion, PanInfo, Variants } from 'framer-motion';
 import { ReactElement, useState, useRef } from 'react';
 import style from './AnimatedDial.module.css';
 
@@ -92,13 +92,25 @@ export function AnimatedDial():ReactElement {
     <motion.div
       ref={dialRef}
       className={style.dial}
-      onPan={onPan}  
+      onPan={onPan}
+      variants={variants}
+      custom={90 * value}
+      animate='animate'
     >
       <motion.div
         className={style.innerDial}
+        animate={{
+          rotate: -90 * value
+        }}
       >
         {value}
       </motion.div>
     </motion.div>
   );
 }
+
+const variants: Variants = {
+  animate: rotation => ({
+    rotate: rotation
+  })
+};
