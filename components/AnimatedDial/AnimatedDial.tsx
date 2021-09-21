@@ -48,11 +48,11 @@ export function AnimatedDial():ReactElement {
   const [lastDirection, setLastDirection] = useState(0);
   const dialRef = useRef<HTMLDivElement>(null);
 
-  function increment():void {
+  function handleClockwise():void {
     setValue(prev => prev + 1);
   }
 
-  function decrement():void {
+  function handleCounterClockwise():void {
     setValue(prev => prev - 1);
   }
 
@@ -81,7 +81,7 @@ export function AnimatedDial():ReactElement {
 
     if(cumulativeDistance > threshold) {
       setCumulativeDistance(0);
-      return direction > 0 ? increment() : decrement();
+      return direction > 0 ? handleClockwise() : handleCounterClockwise();
     }
 
     setCumulativeDistance(prev => prev + Math.abs(angle));
