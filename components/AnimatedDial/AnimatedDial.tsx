@@ -12,8 +12,8 @@ interface CenterArgs {
 interface GetAngleArgs {
   centerX: number,
   centerY: number,
-  oldX: number,
-  oldY: number,
+  lastX: number,
+  lastY: number,
   mouseX: number,
   mouseY: number
 }
@@ -28,9 +28,9 @@ function getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight }: 
   };
 }
 
-function getAngle({  centerX, centerY, oldX, oldY, mouseX, mouseY }: GetAngleArgs){
-  const x1 = oldX - centerX;
-  const y1 = oldY - centerY;
+function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleArgs){
+  const x1 = lastX - centerX;
+  const y1 = lastY - centerY;
   const x2 = mouseX - centerX;
   const y2 = mouseY - centerY;
   const d1 = Math.sqrt(x1 * x1 + y1 * y1);
@@ -64,11 +64,11 @@ export function AnimatedDial():ReactElement {
       clientHeight, 
     } = dialRef.current;
     const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
-    const oldX = info.point.x - info.delta.x;
-    const oldY = info.point.y - info.delta.y;
+    const lastX = info.point.x - info.delta.x;
+    const lastY = info.point.y - info.delta.y;
     const mouseX = info.point.x;
     const mouseY = info.point.y;
-    const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
+    const angle = getAngle({ centerX, centerY, lastX, lastY, mouseX, mouseY });
     // 1 = clockwise, -1 = counter clockwise, 0 = no movement (but mouse is still down and event is firing)
     const direction = Math.sign(angle);
 
