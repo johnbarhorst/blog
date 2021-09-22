@@ -10,8 +10,8 @@ interface Props {
 
 export function ProjectCard({ href, title, description, children }: Props):ReactElement {
   return (
-    <a href={href} className={style.card} >
-      <div>
+    <a href={href} className={style.wrapper}>
+      <div className={style.card}>
         <h3>{title}</h3>
         {children}
         <p>{description}</p>
