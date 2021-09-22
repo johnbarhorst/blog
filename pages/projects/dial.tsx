@@ -1,8 +1,8 @@
-import { AnimatedDial } from 'components/AnimatedDial';
+import { AnimatedDialPage } from 'components/AnimatedDialPage';
 import { ReactElement } from 'react';
 
 export default function dial():ReactElement {
   return (
-    <AnimatedDial />
+    <AnimatedDialPage />
   );
 }
