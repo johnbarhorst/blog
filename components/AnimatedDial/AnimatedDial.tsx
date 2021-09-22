@@ -39,13 +39,13 @@ function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleA
   return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
 }
 
-// roughly 6.6 would be one full rotation (might depend on the element size?)
-const threshold = .75;
 
 export function AnimatedDial():ReactElement {
   const [value, setValue] = useState(0);
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
   const [lastDirection, setLastDirection] = useState(0);
+  // roughly 6.6 would be one full rotation
+  const [sensitivity, setSensitivity] = useState(.75);
   const dialRef = useRef<HTMLDivElement>(null);
 
   function handleClockwise():void {
@@ -79,7 +79,7 @@ export function AnimatedDial():ReactElement {
       return setLastDirection(direction);
     }
 
-    if(cumulativeDistance > threshold) {
+    if(cumulativeDistance > sensitivity) {
       setCumulativeDistance(0);
       return direction > 0 ? handleClockwise() : handleCounterClockwise();
     }
