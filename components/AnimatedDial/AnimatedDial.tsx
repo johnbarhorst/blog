@@ -2,6 +2,9 @@ import { motion, PanInfo, Variants } from 'framer-motion';
 import { ReactElement, useState, useRef } from 'react';
 import style from './AnimatedDial.module.css';
 
+interface Props {
+  sensitivity?: number
+}
 interface CenterArgs {
   offsetTop: number,
   offsetLeft: number,
@@ -40,12 +43,11 @@ function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleA
 }
 
 
-export function AnimatedDial():ReactElement {
+export function AnimatedDial({ sensitivity= .75 }: Props):ReactElement {
   const [value, setValue] = useState(0);
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
   const [lastDirection, setLastDirection] = useState(0);
   // roughly 6.6 would be one full rotation
-  const [sensitivity, setSensitivity] = useState(.75);
   const dialRef = useRef<HTMLDivElement>(null);
 
   function handleClockwise():void {
