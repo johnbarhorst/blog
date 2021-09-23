@@ -1,15 +1,13 @@
 import { motion, PanInfo, Variants } from 'framer-motion';
-import { ReactElement, useState, useRef } from 'react';
+import { useElementCenter } from 'hooks/useElementCenter';
+import { ReactElement, useState, ReactNode } from 'react';
 import style from './AnimatedDial.module.css';
 
 interface Props {
-  sensitivity?: number
-}
-interface CenterArgs {
-  offsetTop: number,
-  offsetLeft: number,
-  clientWidth: number,
-  clientHeight: number
+  sensitivity?: number,
+  handleClockwise: () => void,
+  handleCounterClockwise: () => void,
+  children?: ReactNode 
 }
 
 interface GetAngleArgs {
@@ -19,16 +17,6 @@ interface GetAngleArgs {
   lastY: number,
   mouseX: number,
   mouseY: number
-}
-
-
-function getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight }: CenterArgs) {
-  const centerX = offsetLeft + clientWidth / 2;
-  const centerY = offsetTop + clientHeight / 2;
-  return {
-    centerX,
-    centerY
-  };
 }
 
 function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleArgs){
@@ -43,33 +31,25 @@ function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleA
 }
 
 
-export function AnimatedDial({ sensitivity= .75 }: Props):ReactElement {
-  const [value, setValue] = useState(0);
+export function AnimatedDial({
+  // roughly 6.6 sensitivity would be one full rotation
+  sensitivity= .75,
+  handleClockwise,
+  handleCounterClockwise,
+  children
+}: Props):ReactElement {
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
   const [lastDirection, setLastDirection] = useState(0);
-  // roughly 6.6 would be one full rotation
-  const dialRef = useRef<HTMLDivElement>(null);
+  const [centerX, centerY, centerRef] = useElementCenter<HTMLDivElement>();
+  // const dialRef = useRef<HTMLDivElement>(null);
 
-  function handleClockwise():void {
-    setValue(prev => prev + 1);
-  }
-
-  function handleCounterClockwise():void {
-    setValue(prev => prev - 1);
-  }
 
   function onPan(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo):void {
-    const {
-      offsetTop,
-      offsetLeft,
-      clientWidth,
-      clientHeight, 
-    } = dialRef.current;
-    const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
     const lastX = info.point.x - info.delta.x;
     const lastY = info.point.y - info.delta.y;
     const mouseX = info.point.x;
     const mouseY = info.point.y;
+    
     const angle = getAngle({ centerX, centerY, lastX, lastY, mouseX, mouseY });
     // 1 = clockwise, -1 = counter clockwise, 0 = no movement (but mouse is still down and event is firing)
     const direction = Math.sign(angle);
@@ -92,21 +72,13 @@ export function AnimatedDial({ sensitivity= .75 }: Props):ReactElement {
 
   return (
     <motion.div
-      ref={dialRef}
+      ref={centerRef}
       className={style.dial}
       onPan={onPan}
       variants={variants}
-      custom={90 * value}
       animate='animate'
     >
-      <motion.div
-        className={style.innerDial}
-        animate={{
-          rotate: -90 * value
-        }}
-      >
-        {value}
-      </motion.div>
+      {children}
     </motion.div>
   );
 }
