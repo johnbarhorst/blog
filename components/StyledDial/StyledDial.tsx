@@ -8,11 +8,11 @@ export function StyledDial():ReactElement {
   const [sensitivity, setSensitivity] = useState(.75);
 
   function handleClockwise() {
-    setValue(prev => prev + sensitivity * 100);
+    setValue(prev => prev + 75);
   }
 
   function handleCounterClockwise() {
-    setValue(prev => prev - sensitivity * 100);
+    setValue(prev => prev - 75);
   }
 
   return (
