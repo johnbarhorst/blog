@@ -1,0 +1,17 @@
+.dial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--textDark);
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background: linear-gradient(
+    rgb(130, 130, 130) 5%, rgb(200, 200, 200) 50%,
+    rgb(130, 130, 130) 95%);
+  cursor: pointer;
+  margin: 2rem;
+  touch-action: none;
+}
+
