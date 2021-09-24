@@ -1,6 +1,5 @@
 import { AnimatedDial } from 'components/AnimatedDial';
 import { motion, Variants } from 'framer-motion';
-import { type } from 'os';
 import { ReactElement, useState } from 'react';
 import style from './StyledDial.module.css';
 
