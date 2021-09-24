@@ -14,6 +14,12 @@ export function ProjectsPage():ReactElement {
           description='A practice in form styling and animation.'
         >
         </ProjectCard>
+        <ProjectCard
+          href='projects/dial'
+          title='Animated Dial'
+          description='A spinnable, animated dial selector.'
+        >
+        </ProjectCard>
       </section>
     </main>
   );
