@@ -1,7 +1,8 @@
+import { PostsList } from 'lib/getPosts';
 import { ReactElement } from 'react';
 
 
-export function BlogPage({ allPostsData }: { allPostsData: any}):ReactElement {
+export function BlogPage({ allPostsData }: { allPostsData: PostsList[]}):ReactElement {
   return (
     <main>
       <h1>Blog!</h1>

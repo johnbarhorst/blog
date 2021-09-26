@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-type PostsList = {
+export type PostsList = {
   id: string,
   title: string
 }
