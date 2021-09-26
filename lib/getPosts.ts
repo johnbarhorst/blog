@@ -2,9 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+type PostsList = {
+  id: string,
+  title: string
+}
+
 const postsDirectory = path.join(process.cwd(), 'blog_pages');
 
-export function getPosts(): any {
+export function getPosts(): PostsList[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map(fileName => {
     const id = fileName.replace(/\.md$/, '');
@@ -15,7 +20,7 @@ export function getPosts(): any {
 
     return {
       id,
-      ...matterResult.data
+      title: matterResult.data.title
     };
   });
 
