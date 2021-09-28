@@ -1,9 +1,9 @@
 import { BlogPage } from 'components/BlogPage';
-import { getPosts, PostsList } from 'lib/getPosts';
+import { getPosts, PostMeta } from 'lib/posts';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
-export default function Blog({ allPostsData }: { allPostsData: PostsList[]}):ReactElement {
+export default function Blog({ allPostsData }: { allPostsData: PostMeta[]}):ReactElement {
   return <BlogPage allPostsData={allPostsData} />;
 }
 
