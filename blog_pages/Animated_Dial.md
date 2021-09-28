@@ -1,8 +1,6 @@
 ---
 title: 'Building an Animated Dial'
-
 ---
-
 After talking to my brother about some web site ideas he has involving a rotatable dial, I set off to try and build such a thing.
 
 First step seemed obvious, create a quick circle with border radius of 50% on a div.
