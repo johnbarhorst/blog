@@ -31,5 +31,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     };
   }
-  throw new Error(`Id paramater must be a string, instead got ${params.id}`);
+  throw new Error(`Id paramater must be a string, instead got ${typeof(params.id)}`);
 };
