@@ -7,8 +7,11 @@ export function BlogPage({ allPostsData }: { allPostsData: PostMeta[]}):ReactEle
     <main>
       <h1>Blog!</h1>
       <section>
-        {allPostsData.map(({ id, title }) => (
-          <li key={id}><a href={`/blog/${id}`}>{title}</a></li>
+        {allPostsData.map(({ id, title, description }) => (
+          <a href={`/blog/${id}`} key={id}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </a>
         ))}
       </section>
     </main>
