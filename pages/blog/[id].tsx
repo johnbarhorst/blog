@@ -3,12 +3,10 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
 export default function BlogPost({ postData }: {postData: PostMeta}):ReactElement {
-  const { title, content, id } = postData;
+  const { content } = postData;
   
   return (
     <main>
-      <p>Id: {id}</p>
-      <p>Title: {title}</p>
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );
