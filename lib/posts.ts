@@ -4,13 +4,11 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 
-export interface MatterData {
+export interface PostMeta {
+  id: string,
   title: string
   content?: string
-}
-
-export interface PostMeta extends MatterData {
-  id: string,
+  description?: string
 }
 
 const postsDirectory = path.join(process.cwd(), 'blog_pages');
@@ -26,7 +24,8 @@ export function getPosts(): PostMeta[] {
 
     return {
       id,
-      title: matterResult.data.title
+      title: matterResult.data.title,
+      description: matterResult.data.description
     };
   });
 
