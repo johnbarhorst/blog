@@ -1,9 +1,13 @@
 ---
-title: 'Building an Animated Dial'
+title: 'Building an Interactive Animated Dial'
+description: 'My adventures in building an interactive and animated dial that a user can "spin" to change values.'
 ---
-After talking to my brother about some web site ideas he has involving a rotatable dial, I set off to try and build such a thing.
+# Building An Interactive Animated Dial
 
-First step seemed obvious, create a quick circle with border radius of 50% on a div.
+### The Idea
+My brother had an idea for a collaborative project. Part of that idea involved having a "spinnable" dial that a user could interact with to increase and decrease values. I liked the idea, and set off to create just such a thing.
+
+### The Process
 
 For animations, I've been using Framer Motion quite a bit lately. It seemed like a good place to start looking for ideas on how to implement the rest of the functionality.
 
@@ -17,23 +21,23 @@ delta: Distance moved since the last event.
 offset: Offset from the original pan event.
 velocity: Current velocity of the pointer.
 
-This all seems like useful data. But one thing I couldn't find was a way to know just 'how' a pan gesture is moving. Up, down, around in a circle? This sort of thing sounds like math, and definitely not something I was familiar with. After a bit of searching for how to determine clockwise/counterclockwise movement, and even a video showing it in Unity, I found this post on stack overflow. 
+This all seems like useful data. But one thing I couldn't find was a way to know just 'how' a pan gesture is moving. Up, down, around in a circle? This sort of thing sounds like math, and definitely not something I was familiar with. After a bit of searching for how to determine clockwise/counterclockwise movement, and even a video showing it in Unity, I found this post on [stack overflow](https://stackoverflow.com/questions/49147241/how-to-detect-if-mouse-is-moving-in-clockwise-direction).
 
-https://stackoverflow.com/questions/49147241/how-to-detect-if-mouse-is-moving-in-clockwise-direction
+```js
+    // cx,cy center of rotation
+    // ox,oy old position of mouse
+    // mx,my new position of mouse
+    function getAngle(cx, cy, ox, oy, mx, my){
+        var x1 = ox - cx;
+        var y1 = oy - cy;
+        var x2 = mx - cx;
+        var y2 = my - cy;
+        var d1 = Math.sqrt(x1 * x1 + y1 * y1);
+        var d2 = Math.sqrt(x2 * x2 + y2 * y2);
 
-// cx,cy center of rotation
-// ox,oy old position of mouse
-// mx,my new position of mouse.
-function getAngle(cx, cy, ox, oy, mx, my){
-    var x1 = ox - cx;
-    var y1 = oy - cy;
-    var x2 = mx - cx;
-    var y2 = my - cy;
-    var d1 = Math.sqrt(x1 * x1 + y1 * y1);
-    var d2 = Math.sqrt(x2 * x2 + y2 * y2);
-
-    return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
-}
+        return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
+    }
+```
 
 This function returns a positive or negative float that shows how far the mouse has moved since the old mouse position. Positive indicates clockwise motion, negative indicates counterclockwise. Some of the data we need to plug into that function, is already given to us throught the onPan callback. But we still need a bit more info.
 
