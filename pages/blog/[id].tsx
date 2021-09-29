@@ -9,7 +9,7 @@ export default function BlogPost({ postData }: {postData: PostMeta}):ReactElemen
     <main>
       <p>Id: {id}</p>
       <p>Title: {title}</p>
-      <pre>Contents: {content}</pre>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );
 }
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if(typeof(params.id) === 'string') {
-    const postData = getPostData(params.id);
+    const postData = await getPostData(params.id);
     return {
       props: {
         postData
