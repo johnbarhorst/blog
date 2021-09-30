@@ -28,7 +28,7 @@ body {
   --forestGreen: #004E4C;
   --persianGreen: #339989;
   --white: #fff;
-  --redRadial: radial-gradient(circle at left bottom, rgba(74,3,11,1) 19%, rgba(130,8,56,1) 43%, rgba(82,5,35,1) 88%);
+  --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, rgba(78,21,21,1) 44%, rgba(0,0,0,1) 57%, rgba(78,21,21,1) 77%, rgba(0,0,0,1) 94%);
   --lightBlueGradient: linear-gradient(120deg, rgba(105,161,194,1) 25%, rgba(156,189,208,1) 50%, rgba(105,161,194,1) 75%);
   /* Color Purposes */
   --link: #fff;
