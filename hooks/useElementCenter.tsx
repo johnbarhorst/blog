@@ -21,9 +21,9 @@ function getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight }: 
 
 
 export function useElementCenter<T extends HTMLElement>(): UseElementCenterType<T> {
+  const centerRef = useRef<T>(null);
   const [centerX, setCenterX] = useState(0);
   const [centerY, setCenterY] = useState(0);
-  const centerRef = useRef<T>(null);
   
   // Need useEffect here to account for initiating the ref as null.
   useEffect(() => {
