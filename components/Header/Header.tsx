@@ -11,10 +11,10 @@ const links = [
     href:'/',
     text:'Home'
   },
-  // {
-  //   href: '/blog',
-  //   text: 'Blog'
-  // },
+  {
+    href: '/blog',
+    text: 'Blog'
+  },
   {
     href:'/projects',
     text:'Digital Garden'
