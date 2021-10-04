@@ -55,4 +55,13 @@ export interface PostMeta {
 
 I'm second guessing using Remark so far. I think I'm going to want to get a little more robust with displays of code and such. Eyeballing MDX, and MDX has it's own Next specific package.
 
+Tried out React-Markdown. React-Markdown is an ES Module only package, and it does not want to play nice with Nexts compiling. Even though I'm using `import ReactMarkdown from 'react-markdown';`, it still causes an error when I try to view the page.
+
+```
+Error: Must use import to load ES Module: /Users/johnbarhorst/Projects/blog/node_modules/react-markdown/index.js
+require() of ES modules is not supported.
+```
+Found this issue on [Github](https://github.com/vercel/next.js/issues/25454). Seems to have some solutions for me.
+Another possible route for me here is to enable experimental ESM support in NextJS. Gonna give that a whirl, since in Next 12 ESM support will be the default.
+
 This websites background is not going to work well for blogs. I'm going to have to style up some blocks. Maybe having the background peek through in spots will be cool. Maybe not!
