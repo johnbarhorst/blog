@@ -54,6 +54,6 @@ export async function getPostData(id: string): Promise<PostMeta> {
   return {
     id,
     title: matterResult.data.title,
-    content: contentHtml
+    content: matterResult.content
   };
 }

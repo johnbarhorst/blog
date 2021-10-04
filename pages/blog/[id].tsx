@@ -1,13 +1,14 @@
 import { getAllPostIds, getPostData, PostMeta } from 'lib/posts';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export default function BlogPost({ postData }: {postData: PostMeta}):ReactElement {
   const { content } = postData;
   
   return (
     <main>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <ReactMarkdown>{content}</ReactMarkdown>
     </main>
   );
 }
