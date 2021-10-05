@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import remark from 'remark';
-import html from 'remark-html';
+
 
 export interface PostMeta {
   id: string,
@@ -42,15 +41,11 @@ export function getAllPostIds(): {params:{id:string}}[] {
   });
 }
 
-export async function getPostData(id: string): Promise<PostMeta> {
+export function getPostData(id: string):PostMeta {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf-8');
 
   const matterResult = matter(fileContents);
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
   return {
     id,
     title: matterResult.data.title,
