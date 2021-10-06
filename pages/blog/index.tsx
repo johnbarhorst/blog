@@ -1,10 +1,10 @@
-import { BlogPage } from 'components/BlogPage';
+import { BlogListPage } from 'components/BlogListPage';
 import { getPosts, PostMeta } from 'lib/posts';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
 export default function Blog({ allPostsData }: { allPostsData: PostMeta[]}):ReactElement {
-  return <BlogPage allPostsData={allPostsData} />;
+  return <BlogListPage allPostsData={allPostsData} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {

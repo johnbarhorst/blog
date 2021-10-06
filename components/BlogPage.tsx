@@ -1,20 +1,10 @@
-import { PostMeta } from 'lib/posts';
 import { ReactElement } from 'react';
+import ReactMarkdown from 'react-markdown';
 
-
-export function BlogPage({ allPostsData }: { allPostsData: PostMeta[]}):ReactElement {
+export function BlogPage({ content }: {content: string}):ReactElement {
   return (
     <main>
-      <h1>Blog!</h1>
-      <section>
-        {allPostsData.map(({ id, title, description }) => (
-          <a href={`/blog/${id}`} key={id}>
-            <h3>{title}</h3>
-            <p>{description}</p>
-          </a>
-        ))}
-      </section>
+      <ReactMarkdown>{content}</ReactMarkdown>
     </main>
   );
 }
-
