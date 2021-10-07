@@ -1,10 +1,11 @@
 import { ReactElement } from 'react';
 import ReactMarkdown from 'react-markdown';
+// import style from './BlogPage.module.css';
 
 export function BlogPage({ content }: {content: string}):ReactElement {
   return (
-    <main>
-      <ReactMarkdown>{content}</ReactMarkdown>
+    <main style={{ overflowX: 'hidden' }} >
+      <ReactMarkdown skipHtml >{content}</ReactMarkdown>
     </main>
   );
 }
