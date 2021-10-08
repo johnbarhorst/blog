@@ -162,6 +162,7 @@ I've tried removing react-syntax-highlighter, still get the same problem. So it 
 
 Nevermind! Applying styles using BlogPage.module.css isn't working. Neither is using a style object on the main tag.
 
+Never...nevermind? Somebody on this project, I won't say who, ran `npm run build` to test a built version of the site. Since then someone has been using `npm run start` instead of `npm run dev` and wondering why no changes were taking effect.
 
 
 
