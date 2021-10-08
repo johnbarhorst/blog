@@ -24,19 +24,19 @@ velocity: Current velocity of the pointer.
 This all seems like useful data. But one thing I couldn't find was a way to know just 'how' a pan gesture is moving. Up, down, around in a circle? This sort of thing sounds like math, and definitely not something I was familiar with. After a bit of searching for how to determine clockwise/counterclockwise movement, and even a video showing it in Unity, I found this post on [stack overflow](https://stackoverflow.com/questions/49147241/how-to-detect-if-mouse-is-moving-in-clockwise-direction).
 
 ```js
-    // cx,cy center of rotation
-    // ox,oy old position of mouse
-    // mx,my new position of mouse
-    function getAngle(cx, cy, ox, oy, mx, my){
-        var x1 = ox - cx;
-        var y1 = oy - cy;
-        var x2 = mx - cx;
-        var y2 = my - cy;
-        var d1 = Math.sqrt(x1 * x1 + y1 * y1);
-        var d2 = Math.sqrt(x2 * x2 + y2 * y2);
+// cx,cy center of rotation
+// ox,oy old position of mouse
+// mx,my new position of mouse
+function getAngle(cx, cy, ox, oy, mx, my){
+    var x1 = ox - cx;
+    var y1 = oy - cy;
+    var x2 = mx - cx;
+    var y2 = my - cy;
+    var d1 = Math.sqrt(x1 * x1 + y1 * y1);
+    var d2 = Math.sqrt(x2 * x2 + y2 * y2);
 
-        return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
-    }
+    return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
+}
 ```
 
 This function returns a positive or negative float that shows how far the mouse has moved since the old mouse position. Positive indicates clockwise motion, negative indicates counterclockwise. Some of the data we need to plug into that function, is already given to us throught the onPan callback. But we still need a bit more info.
@@ -65,13 +65,13 @@ The info.point gives us the current mouse position, and by subracting the delta 
 
 Now we have all the mouse information we need to feed into the getAngle function,
 ```ts
-    const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
-    const oldX = info.point.x - info.delta.x;
-    const oldY = info.point.y - info.delta.y;
-    const mouseX = info.point.x;
-    const mouseY = info.point.y;
+const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
+const oldX = info.point.x - info.delta.x;
+const oldY = info.point.y - info.delta.y;
+const mouseX = info.point.x;
+const mouseY = info.point.y;
 
-    const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
+const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
 ```
 By utilizing the getAngle function, we now have a positive or negative float that shows how far and in what direction the mouse has moved, relative to the center of our element. Negative values indicate counterclockwise, while positive indicate a clockwise pan motion.
 
