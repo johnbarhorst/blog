@@ -1,5 +1,6 @@
 .main {
   max-width: 90%;
   margin: 0 auto;
+  /* Overflow hidden to fix a bug I'm having with ReactMarkdown. Removing this distorts the page and zooms way out. */
   overflow-x: hidden;
 }
