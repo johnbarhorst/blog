@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .main {
+  font-family: 'Roboto', sans-serif;
   max-width: 90%;
   margin: 0 auto;
   /* Overflow hidden to fix a bug I'm having with ReactMarkdown. Removing this distorts the page and zooms way out. */
   overflow-x: hidden;
+}
+
+.main pre > code {
+  font-size: .75rem;
 }
