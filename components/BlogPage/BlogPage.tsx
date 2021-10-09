@@ -12,7 +12,6 @@ export function BlogPage({ content }: {content: string}):ReactElement {
         components={{
           code({ inline, className, children, ...props }: SyntaxHighlighterProps) {
             const match = /language-(\w+)/.exec(className || '');
-            console.log(props);
             return !inline && match ? (
               <SyntaxHighlighter
                 style={darcula}
