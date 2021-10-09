@@ -59,7 +59,7 @@ Found documentation on using MDX to be kind of lacking. Without a clear path for
 
 Turns out that the current version of React-Markdown is an ES Module only package, and it does not want to play nice with Nexts compiling. Even though I'm using `import ReactMarkdown from 'react-markdown';`, it still causes an error when I try to view the page.
 
-```
+```none
 Error: Must use import to load ES Module: /Users/johnbarhorst/Projects/blog/node_modules/react-markdown/index.js
 require() of ES modules is not supported.
 ```
@@ -80,7 +80,7 @@ module.exports = {
 ```
 
 It does create a warning: 
-```
+```none
 warn  - ./node_modules/power-assert-formatter/lib/create.js
 Critical dependency: the request of a dependency is an expression
 ```
@@ -92,12 +92,12 @@ Now that I have the parsing and displaying of markdown working within React-Mark
 
 Trying out react-syntax-highlighter as my code formatting option. Using the example, I came up with this:
 
-```ts
+```tsx
 import { getAllPostIds, getPostData, PostMeta } from 'lib/posts';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 
 export default function BlogPost({ postData }: {postData: PostMeta}):ReactElement {
@@ -107,13 +107,12 @@ export default function BlogPost({ postData }: {postData: PostMeta}):ReactElemen
     <main>
       <ReactMarkdown
         components={{
-          code({ node, inline, className, children, ...props }) {
+          code({ inline, className, children, ...props }): SyntaxHighlighterProps {
             const match = /language-(\w+)/.exec(className || '');
             return !inline && match ? (
               <SyntaxHighlighter
-                style={dark}
+                style={darcula}
                 language={match[1]}
-                PreTag="div"
                 {...props}
               >
                 {String(children).replace(/\n$/, '')}
@@ -158,12 +157,9 @@ I've poured through all the styles on the page. None of the elements generated b
 
 Level Up Tutorials has a nice and helpful community. I shared my woes there and they saw the same problem. While I learned that applying `overflow-x: hidden;` fixes the issue, I am no closer to discovering the root cause.
 
-I've tried removing react-syntax-highlighter, still get the same problem. So it lies somewhere within the ReactMarkdown component. For now, I'm going to take the quick fix of `overflow-x: hidden;`, and if I ever figure it out, I'll come back to this.
+I've tried removing react-syntax-highlighter, still get the same problem. Replaced the ReactMarkdown component with a bunch of lorem ipsum, and had no issues. So it lies somewhere within the ReactMarkdown component. For now, I'm going to take the quick fix of `overflow-x: hidden;`, and if I ever figure it out, I'll come back to this.
 
-Nevermind! Applying styles using BlogPage.module.css isn't working. Neither is using a style object on the main tag.
-
-Never...nevermind? Somebody on this project, I won't say who, ran `npm run build` to test a built version of the site. Since then someone has been using `npm run start` instead of `npm run dev` and wondering why no changes were taking effect.
+With that figured out it's time to throw back in the syntax highlighting! Reintroducing syntax highlighting has finally shown me where the layout issues where coming from. My code blocks are wrapped in `<pre>` tags, so all the white space is getting preserved. This is causing the page to spread out horizontally. Or, with the `overflow-x: hidden;` applied, means that not all my code shows up on the page. Using the `<SyntaxHighlighter>` component, these code blocks get wrapped in additional `<pre>` tags with some css sauce and get horizontal scroll now instead.
 
 
-
-This websites background is not going to work well for blogs. I'm going to have to style up some blocks. Maybe having the background peek through in spots will be cool. Maybe not!
+Digging into some styling of the blog itself now. Starting off with mobile of course. First and foremost, the font I'm using on the rest of my site is not very good for readability when there's that much text. I'm not going to try and reinvent the blog wheel just yet, so I went with the ever popular Roboto from Google fonts.
