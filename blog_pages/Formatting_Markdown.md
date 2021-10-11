@@ -86,7 +86,7 @@ Critical dependency: the request of a dependency is an expression
 ```
 However after looking into it, this doesn't appear to be anything to be concerned with.
 
-Now ReactMarkdown no longer throws errors, and everything else seems to work. Once Next v12 drops, I'll hopefully be able to upgrade into a stable version of ESM support. I wouldn't do something like this in a full blown production site. But situations like this is what I want to use this project for. Trying things out, seeing what works and what breaks.
+Now ReactMarkdown no longer throws errors, and everything else seems to work. Once Next v12 drops, I'll hopefully be able to upgrade into a stable version of ESM support. I probably wouldn't do something like this in a full blown production site unless I really knew the ramifications. But situations like this is what I want to use this project for. Trying things out, seeing what works and what breaks.
 
 Now that I have the parsing and displaying of markdown working within React-Markdown, time to dig in to syntax highlighting and styling of the blogs.
 
@@ -131,12 +131,12 @@ export default function BlogPost({ postData }: {postData: PostMeta}):ReactElemen
 ```
 Unfortunately I immediately ran into the following error in my terminal.
 
-
-> error - /Users/johnbarhorst/Projects/blog/node_modules/react-syntax-highlighter/dist/esm/styles/prism/index.js:1
+```none
+error - /Users/johnbarhorst/Projects/blog/node_modules/react-syntax-highlighter/dist/esm/styles/prism/index.js:1
 export { default as coy } from './coy';
 ^^^^^^
 SyntaxError: Unexpected token 'export'
-
+```
 
 After a few dead end searches, I came across this in the experimental esm support thread
 
@@ -163,3 +163,5 @@ With that figured out it's time to throw back in the syntax highlighting! Reintr
 
 
 Digging into some styling of the blog itself now. Starting off with mobile of course. First and foremost, the font I'm using on the rest of my site is not very good for readability when there's that much text. I'm not going to try and reinvent the blog wheel just yet, so I went with the ever popular Roboto from Google fonts.
+
+I tried a few different ways of displaying error messages. First I thought to use block quotes, but I didn't feel like they stood out like I wanted them to. I dug through all the supported languages that Prism offers, and thought Python was going to be the best bet without writing all the styles myself. But then I found out you can actually specify 'none' as the language. This gives all the formatting and background without any key words or phrases getting weirdly highlighted.
