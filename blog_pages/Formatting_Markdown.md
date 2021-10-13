@@ -9,51 +9,64 @@ I don't know much about actually writing blogs. I have a tendency to pour over e
 
 ### The Process
 
-First order of business, write faster. "Move fast, break things", as they say.
+#### First order of business, write faster. "Move fast, break things", as they say.
 
 Starting with the Animated Dial, I've been taking notes along the entire path. From the start to completion. I want to include all the missteps, the things I've learned, all of it. There's a million blogs out there cutting to the chase, showing the completed code and how to do it. While I feel like that's where the market is, because people (myself included) just want answers, I can't help but think it doesn't show the reality behind development.
 
-During all my early self directed learnings, I'd watch videos and read pieces where the author just seemed to know exactly what to do every step of the way. While that can be the case when you're building something you've built before, most of the real projects I've undertaken have been filled with backtracking, becoming stumped and reading over documentation, refactors and complete restarts. That's the stuff I want to capture. I don't really think many will read it, but hopefully it shines some light on the real experience for someone somewhere.
+During all my early self directed learnings, I'd watch videos and read blogs where the author just seemed to know exactly what to do every step of the way. While that can be the case when you're building something you've built before, most of the real projects I've undertaken have been filled with backtracking, becoming stumped and reading over documentation, refactors and complete restarts. That's the stuff I want to capture. I don't really think many will read it, but hopefully it shines some light on the real experience for someone somewhere.
 
-Second order of business, format and display those fast things I wrote.
+#### Second order of business, format and display those fast things I wrote.
 
-I'm actually writing this blog post on learning to write and format markdown, while writing and formatting the markdown for my [Building an Interactive Animated Dial](/blog/Animated_Dial) blog.
+I'm actually writing this blog post on learning to write and format markdown, while writing and formatting the markdown for my [Building an Interactive Animated Dial blog](/blog/Animated_Dial).
 
-To get going on rendering this markdown I, of course, looked up one of those blogs/courses that showed me exactly what to do. Since lately I've been primarily working with [Next.js](https://nextjs.org), I've run across this [Dynamic Routes](https://nextjs.org/learn/basics/dynamic-routes) lesson from their docs a number of times.
+To get going on rendering this markdown, I of course, looked up one of those blogs/courses that showed me exactly what to do. Since lately I've been primarily working with [Next.js](https://nextjs.org), I've run across this [Dynamic Routes](https://nextjs.org/learn/basics/dynamic-routes) lesson from their docs a number of times. It shows how to get up and running using [Remark](https://www.npmjs.com/package/remark) to parse the mark up files, and then using dynamic routing to display statically generated pages based on your markdown files.
 
-I had some hiccups with converting things into TypeScript. I've been learning TypeScript while building this site. While most of my types have been straightforward, I had to dig a little to learn about typing promises and trying to make more flexible types to accomodate my indecision on what data I wanted to head my blogs with.
-
-
-Typing a promise for TypeScript seems to actually be pretty straightforward. My understanding of it at this point is I use the type I defined before the function was async, and pass that in as an output of the Promise type.
+After writing some markdown based blogs, first step is to get a list of all the blogs in the directory.
 ```ts
-export interface MatterData {
-  title: string
-  content?: string
-}
+// Get list of all blogs (markdown files)
+// path to directory containing the blogs
+const postsDirectory = path.join(process.cwd(), 'blog_pages');
+// array of each file name in './blog_pages', with the file extension still on it.
+const fileNames = fs.readdirSync(postsDirectory);
 
-export interface PostMeta extends MatterData {
-  id: string,
-}
-
-export async function getPostData(id: string): Promise<PostMeta> {
-    // do the stuff 
-    }
-```
-
-The `PostMeta` and `MatterData` interfaces feel a little hack to me right now.
-
-It absolutely was hacky. I thought I'd be sending things along without an id at some point. Turns out no. At least not yet, so now: 
-```ts
-export interface PostMeta {
-  id: string,
-  title: string
-  content?: string
-  description?: string
+// remove the .md from each file in the array, and send to getStaticPaths() in the 
+// dynamic route page './pages/blog/[id].tsx' to generate a page for each blog post.
+// Whenever I write a new blog, this will automatically add another path at build time.
+export function getAllPostIds(): {params:{id:string}}[] {
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, '')
+      }
+    };
+  });
 }
 ```
+This part was pretty straight forward to adapt from the Next.js docs. The only real changes I had to make were the directory path and throwing in the TypeScript types.
+
+Then in './pages/blog/[id].tsx' we can give Next our array of paths, and Next will use that to fetch data serverside, and statically generate all our pages ahead of time.
+
+```tsx
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = getAllPostIds();
+  return {
+    paths,
+    fallback: false
+  };
+};
+```
+
+I'm not thrilled with using an arrow function here. I have nothing against using arrow functions. I used to use them as my primary way of writing functions. But I've been moving back to function declarations, and nearly every other function in this project has been a function declaration. However, I'm also learning TypeScript while I work on this site. I was having a rough go of figuring out how to apply `type GetStaticPaths` to this thing as a function declaration. Rather than bang my head against the wall, I opted to just arrow function it out and move on with my life.
+
+Things to note:
+The Next.js functions `getStaticPaths()`, `getStaticProps(), and getServerSideProps()` can only work on a 'page' file in Next. That is to say a file in the './pages' directory, which makes that file a valid route. These functions get exported from the page file, and are actually compiled (transpiled? I still don't totally get these things) as serverside code. You can't throw one of these functions into a separate component, it won't work.
+
+The `getStaticPaths()` function is used to create a list of possible routes within a dynamic route. Then at build time, Next takes those routes, uses the parameters to fetch the required data, and build each page into a static html file. You could then still go off and fetch more frequently updated data on each page if you had to, but that's a different process.
 
 
-I'm second guessing using Remark so far. I think I'm going to want to get a little more robust with how I display code. Eyeballing MDX, and MDX has it's own Next specific package.
+
+
+I'm second guessing using Remark so far. I think I'm going to want to get a little more robust with how I display code. Eyeballing MDX, and MDX has it's own Next specific package. I'm also not super keen on using 
 
 Found documentation on using MDX to be kind of lacking. Without a clear path forward, I started looking around a bit. React-Markdown appears to be a popular option, and can work along side the graymatter package I'm already using. One thing I like is that I don't have to use `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning is certainly working on me.
 
