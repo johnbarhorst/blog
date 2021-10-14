@@ -9,13 +9,14 @@ export interface PostMeta {
   description?: string
 }
 
-// Get list of all blogs (markdown files)
+// GET A LIST OF ALL BLOGS (each markdown file in the directory)
+
 // path to directory containing the blogs
 const postsDirectory = path.join(process.cwd(), 'blog_pages');
 // array of each file name in './blog_pages', with the file extension still on it.
 const fileNames = fs.readdirSync(postsDirectory);
 
-// remove the .md from each file in the array, and send to getStaticPaths() in the 
+// remove the .md from each string in the array, and send to getStaticPaths() in the 
 // dynamic route page './pages/blog/[id].tsx' to generate a page for each blog post.
 // Whenever I write a new blog, this will automatically add another path at build time.
 export function getAllPostIds(): {params:{id:string}}[] {

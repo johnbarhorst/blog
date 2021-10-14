@@ -11,25 +11,29 @@ I don't know much about actually writing blogs. I have a tendency to pour over e
 
 #### First order of business, write faster. "Move fast, break things", as they say.
 
-Starting with the Animated Dial, I've been taking notes along the entire path. From the start to completion. I want to include all the missteps, the things I've learned, all of it. There's a million blogs out there cutting to the chase, showing the completed code and how to do it. While I feel like that's where the market is, because people (myself included) just want answers, I can't help but think it doesn't show the reality behind development.
+Starting with the Animated Dial, I've been taking notes during the whole process. From the start to completion, I want to include all the missteps and the things I've learned. There's a million blogs out there cutting to the chase, showing the completed code and how to do it. While I feel like that's where the market is, because most people (myself included) just want answers, those blogs don't show the reality behind development.
 
-During all my early self directed learnings, I'd watch videos and read blogs where the author just seemed to know exactly what to do every step of the way. While that can be the case when you're building something you've built before, most of the real projects I've undertaken have been filled with backtracking, becoming stumped and reading over documentation, refactors and complete restarts. That's the stuff I want to capture. I don't really think many will read it, but hopefully it shines some light on the real experience for someone somewhere.
+During all my early self directed learning, I'd watch videos and read blogs where the author just seemed to know exactly what to do every step of the way. While that can be the case when you're building something you've built before, most of the real projects I've undertaken have been filled with backtracking, becoming stumped and reading over documentation, refactors and complete restarts. That's the stuff I want to capture. I don't really think many will read it, but hopefully it shines some light on the real experience for someone, somewhere.
 
 #### Second order of business, format and display those fast things I wrote.
 
-I'm actually writing this blog post on learning to write and format markdown, while writing and formatting the markdown for my [Building an Interactive Animated Dial blog](/blog/Animated_Dial).
+I'm writing this blog post on learning to write and format markdown, while writing and formatting the markdown for my [Building an Interactive Animated Dial blog](/blog/Animated_Dial).
 
-To get going on rendering this markdown, I of course, looked up one of those blogs/courses that showed me exactly what to do. Since lately I've been primarily working with [Next.js](https://nextjs.org), I've run across this [Dynamic Routes](https://nextjs.org/learn/basics/dynamic-routes) lesson from their docs a number of times. It shows how to get up and running using [Remark](https://www.npmjs.com/package/remark) to parse the mark up files, and then using dynamic routing to display statically generated pages based on your markdown files.
+To get going on rendering this markdown, I of course, looked up one of those blogs/courses that showed me exactly what to do. Since I've been working with [Next.js](https://nextjs.org) a lot lately, I've run across this [Dynamic Routes](https://nextjs.org/learn/basics/dynamic-routes) lesson from their docs a number of times. It shows how to get up and running using [Remark](https://www.npmjs.com/package/remark) to parse the markdown files, and then generate statically generated pages with that data.
 
-After writing some markdown based blogs, first step is to get a list of all the blogs in the directory.
+After first writing some markdown based blogs, the next step is to get a list of all the blogs in the directory.
 ```ts
-// Get list of all blogs (markdown files)
+// lib/posts.ts
+import fs from 'fs';
+import path from 'path';
+// GET A LIST OF ALL BLOGS (each markdown file in the directory)
+
 // path to directory containing the blogs
 const postsDirectory = path.join(process.cwd(), 'blog_pages');
-// array of each file name in './blog_pages', with the file extension still on it.
+// array of each file name in '../blog_pages', with the file extension still on it.
 const fileNames = fs.readdirSync(postsDirectory);
 
-// remove the .md from each file in the array, and send to getStaticPaths() in the 
+// remove the .md from each string in the array, and send to getStaticPaths() in the 
 // dynamic route page './pages/blog/[id].tsx' to generate a page for each blog post.
 // Whenever I write a new blog, this will automatically add another path at build time.
 export function getAllPostIds(): {params:{id:string}}[] {
@@ -45,8 +49,7 @@ export function getAllPostIds(): {params:{id:string}}[] {
 This part was pretty straight forward to adapt from the Next.js docs. The only real changes I had to make were the directory path and throwing in the TypeScript types.
 
 Then in './pages/blog/[id].tsx' we can give Next our array of paths, and Next will use that to fetch data serverside, and statically generate all our pages ahead of time.
-
-```tsx
+```ts
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
   return {
@@ -56,15 +59,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 ```
 
-I'm not thrilled with using an arrow function here. I have nothing against using arrow functions. I used to use them as my primary way of writing functions. But I've been moving back to function declarations, and nearly every other function in this project has been a function declaration. However, I'm also learning TypeScript while I work on this site. I was having a rough go of figuring out how to apply `type GetStaticPaths` to this thing as a function declaration. Rather than bang my head against the wall, I opted to just arrow function it out and move on with my life.
+I'm not thrilled with using an arrow function here. I have nothing against using arrow functions, mind you, they used to be my primary way of writing functions. Lately though, I've been moving back to function declarations, and nearly every other function in this project is a function declaration. I'm also learning TypeScript while I work on this site, however, and I was having a rough go of figuring out how to apply the type of `GetStaticPaths` to this thing as a function declaration. It is still something I want to figure out. There's obviously something about how typing functions works that hasn't clicked for me yet. Rather than bang my head against the wall, I opted to use an arrow function for now and keep on building.
+
 
 Things to note:
-The Next.js functions `getStaticPaths()`, `getStaticProps(), and getServerSideProps()` can only work on a 'page' file in Next. That is to say a file in the './pages' directory, which makes that file a valid route. These functions get exported from the page file, and are actually compiled (transpiled? I still don't totally get these things) as serverside code. You can't throw one of these functions into a separate component, it won't work.
+- The Next.js functions `getStaticPaths()`, `getStaticProps()`, and `getServerSideProps()` can only work on a 'page' file in Next. That is to say a file in the './pages' directory, which is how Next knows that file is a valid route. These functions get exported from the page file, and are compiled (transpiled? I still don't totally get these things) as serverside code. You can't throw one of these functions into a separate component file, hoping to make some statically generated components. It doesn't work that way.
 
-The `getStaticPaths()` function is used to create a list of possible routes within a dynamic route. Then at build time, Next takes those routes, uses the parameters to fetch the required data, and build each page into a static html file. You could then still go off and fetch more frequently updated data on each page if you had to, but that's a different process.
+- The `getStaticPaths()` function is used to create a list of possible routes within a dynamic route. Then at build time, Next takes those routes, uses the parameters to fetch the required data, and builds each page into a static html file. You could then still go off and fetch dynamic data on each page if you had to, using `useEffect()` or a library like [SWR](https://swr.vercel.app/), but that's a whole different thing.
 
+- I set `fallback: false` to ensure any requests to an invalid '/blog' path will result in a 404 page being served. Which reminds me, I need to create a custom 404 page.
 
+- There are `fallback: true` and `fallback: blocking` options if I were ever in a situation where I wanted to be able to add blog pages without rebuilding the whole site. But since this is deployed on Vercel, and every push to production triggers a full build anyway, this is completely unneccesary at the moment.
 
+- Either way, you need to include one of those fallback settings.
 
 I'm second guessing using Remark so far. I think I'm going to want to get a little more robust with how I display code. Eyeballing MDX, and MDX has it's own Next specific package. I'm also not super keen on using 
 
