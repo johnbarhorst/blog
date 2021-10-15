@@ -73,9 +73,9 @@ Things to note:
 
 - Either way, you need to include one of those fallback settings.
 
-I'm second guessing using Remark so far. I think I'm going to want to get a little more robust with how I display code. Eyeballing MDX, and MDX has it's own Next specific package. I'm also not super keen on using 
+There's a lot of options for markdown rendering libraries. Using just remark, I could process the markdown file into HTML and feed it into a jsx element using `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning makes me want to avoid it. I guess that's the point!
 
-Found documentation on using MDX to be kind of lacking. Without a clear path forward, I started looking around a bit. React-Markdown appears to be a popular option, and can work along side the graymatter package I'm already using. One thing I like is that I don't have to use `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning is certainly working on me.
+
 
 Turns out that the current version of React-Markdown is an ES Module only package, and it does not want to play nice with Nexts compiling. Even though I'm using `import ReactMarkdown from 'react-markdown';`, it still causes an error when I try to view the page.
 
