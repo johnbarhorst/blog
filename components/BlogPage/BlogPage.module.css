@@ -11,3 +11,8 @@
 .main pre > code {
   font-size: .75rem;
 }
+
+.main a {
+  color: var(--teal);
+  text-decoration: underline;
+}
