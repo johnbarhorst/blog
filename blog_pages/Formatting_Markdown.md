@@ -73,9 +73,13 @@ Things to note:
 
 - Either way, you need to include one of those fallback settings.
 
-There's a lot of options for markdown rendering libraries. Using just remark, I could process the markdown file into HTML and feed it into a jsx element using `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning makes me want to avoid it. I guess that's the point!
+#### Actually Rendering Markdown in React.
 
+There's a lot of options for markdown rendering libraries. Using just the previous set up with Remark, I could process the markdown file into HTML and feed it into a jsx element using `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning makes me want to avoid it. I guess that's the whole point.
 
+I started off planning on using [MDX](https://v2.mdxjs.com/docs/getting-started/). However there's a warning banner on the top of the page saying that the docs are for an upcoming release of MDX, not for what's out now. Rather than wrestle with the version discrepencies, I opted to try out [React-Markdown](https://www.npmjs.com/package/react-markdown).
+
+React-Markdown not only works well with Remark, but it even talks about the whole "_dangerouslySetInnerHTML" right there in the sales pitch. Seems like these folks are on the same page as me.
 
 Turns out that the current version of React-Markdown is an ES Module only package, and it does not want to play nice with Nexts compiling. Even though I'm using `import ReactMarkdown from 'react-markdown';`, it still causes an error when I try to view the page.
 
