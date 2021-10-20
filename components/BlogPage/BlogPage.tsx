@@ -23,7 +23,7 @@ export function BlogPage({ content }: {content: string}):ReactElement {
                 {...props}
               >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
             ) : (
-              <code className={className} {...props}>
+              <code className={style.code} {...props}>
                 {children}
               </code>
             );

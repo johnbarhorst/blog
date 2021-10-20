@@ -4,7 +4,7 @@
   font-family: 'Roboto', sans-serif;
   max-width: 90%;
   margin: 0 auto;
-  /* Overflow hidden to fix a bug I'm having with ReactMarkdown. Removing this distorts the page and zooms way out. */
+  /* Need to contain the whitespace from the pre tags. */
   overflow-x: hidden;
 }
 
@@ -15,4 +15,8 @@
 .main a {
   color: var(--teal);
   text-decoration: underline;
+}
+
+.code {
+  background: var(--black)
 }
