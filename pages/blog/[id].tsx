@@ -1,10 +1,10 @@
 import { BlogPage } from 'components/BlogPage';
-import { getAllPostIds, getPostData, PostMeta } from 'lib/posts';
+import { getAllPostIds, getPostData, PostWithContent } from 'lib/posts';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
 
-export default function BlogPost({ postData }: {postData: PostMeta}):ReactElement {
+export default function BlogPost({ postData }: {postData: PostWithContent}):ReactElement {
   const { content } = postData;
   
   return <BlogPage content={content} />;

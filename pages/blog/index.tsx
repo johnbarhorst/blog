@@ -3,15 +3,15 @@ import { getPosts, PostMeta } from 'lib/posts';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
-export default function Blog({ allPostsData }: { allPostsData: PostMeta[]}):ReactElement {
-  return <BlogListPage allPostsData={allPostsData} />;
+export default function Blog({ allPostsMeta }: { allPostsMeta: PostMeta[]}):ReactElement {
+  return <BlogListPage allPostsMeta={allPostsMeta} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getPosts();
+  const allPostsMeta = getPosts();
   return {
     props: {
-      allPostsData
+      allPostsMeta
     }
   };
 };
