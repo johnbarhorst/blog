@@ -125,26 +125,17 @@ With react-markdown properly installed, I now need to make a component to render
 First, using the lessons learned in the Next docs, I parse meta data from the blogs themselves using gray-matter:
 
 ```ts
-// Some of this is repeated from before, if you're following along at home,
-// don't repeat the repeated things in your posts.ts
-// "don't repeat the repeated things" is an odd combination of words
 // ./lib/posts.ts
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-export interface PostMeta {
-  id: string,
-  title: string
-  content?: string
-  description?: string
-}
-// REPEATED STUFF FOR CLARITY (or possibly confusion?)
+
 // path to directory containing the blogs
 const postsDirectory = path.join(process.cwd(), 'blog_pages');
 // array of each file name in './blog_pages', with the file extension still on it.
 const fileNames = fs.readdirSync(postsDirectory);
-// END OF REPEATED STUFF
+
 
 export function getPosts(): PostMeta[] {
   const allPostsMeta = fileNames.map(fileName => {
