@@ -27,6 +27,9 @@ export function BlogPage({ content }: {content: string}):ReactElement {
                 {children}
               </code>
             );
+          },
+          a({ children, href }) {
+            return (<a href={href} target='_blank' rel='noreferrer'>{children}</a>);
           }
         }}
       >{content}</ReactMarkdown>
