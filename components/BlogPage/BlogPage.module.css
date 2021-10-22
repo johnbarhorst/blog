@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.main {
+  font-family: 'Roboto', sans-serif;
+  max-width: 90%;
+  margin: 0 auto;
+  /* Need to contain the whitespace from the pre tags. */
+  overflow-x: hidden;
+}
+
+.main pre > code {
+  font-size: .75rem;
+}
+
+.main a {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+.code {
+  background: var(--black)
+}
