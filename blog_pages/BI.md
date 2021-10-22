@@ -2,26 +2,25 @@
 title: 'BI Worldwide'
 description: 'Hashing out my notes to relate to the job description.'
 ---
-## Why BI Should Hire Me
 
-As a JavaScript Engineer, this role is key to ensuring high quality, reusable code. Someone who lives and breathes code, is meticulous about quality and top-notch user experiences.
+## My Experience Developing with the Bungie API for Destiny 2
 
-- Advanced level JavaScript and problem solving experience.
-- 50-90% coding, fluent with React.js and/or Node.js (1+ years’ in business environment).
-- Experience working in large team environment.
-- Designs software, solves complex problems.
-- Equally comfortable coding, doing code reviews, making technology design decisions, explaining technical concepts and decisions.
-- Has passion for modern software development and automation, experience writing automated tests.
-- Has an eye for user experience, user interaction and what looks good on screen.
-- General familiarity with java code and logic.
-- Can work in a casual, fun yet fast-moving environment.
+Developing a webpage that utilizes the [Bungie API](https://bungie-net.github.io/multi/) was a fun and challenging learning experience.
 
-Roles & Responsibilities:
+- Wrote a Node/Express backend API for my site, that consumes data from the Bungie API.
+- My Node app fetched live data from the Bungie API, and then combines that live data with static data from a SQLite database.
+- Combining live data from the API and static data from the SQLite database involved complex array and object traversal. I had to find hashes in the live data, and figure out the correct database table to search for that hash. Then use hashes from within the database entries to search for even more hashes, and combine all of the data together into objects to be consumed by the front end.
+- These hashes were comprised of large integer values too large for the database to use. So the numbers had to be converted from a large integer to a positive or negative number in order to be looked up.
+- It isn't well explained what much of the data in the API actually is. Figuring out what data was useful or how to get all aspects of what I wanted to display took a lot of research, database digging, and trial and error.
+- To keep the SQLite database up to date, I wrote a function that fetches, decompresses, and saves the database locally using tools like `fs.createWriteStream()`, `fs.renameSync()`, and [unzipper](https://www.npmjs.com/package/unzipper).
+- Frequent updates to the SQLite database created potential for frequent errors. I have to put into place exception and error handling back up plans.
+- Certain aspects of the Bungie API require logging in via OAuth. I was able to write my own Passport.js strategy to allow users more access to data and API functionality.
+- I built the front end to display all of the data using React.js. This project was a perfect use case for React with all of the reusable and frequently updated components.
+- I used React-Router in combination with styled-components and Framer-Motion to create smooth page transitions and animations.
 
-- Interact with and influence all members of product teams including product owner, engineering manager, front and back end developers, QA, UX, designers, management.
-- Develop JavaScript code for web applications using React.js and/or node.js
+## Things I Learned During This Project, And Things I'd Like To Improve
 
-Education/Experience Required:
-
-- 2-3+ years’ experience JavaScript development
-- 1+ years’ experience using react.js and/or node.js
+- I built this project over a year ago. During it, I learned a lot of lessons about solving un-googlable problems, how to structure a web app, and handle things like authorization and databases.
+- New javascript features have come out since I first built this project, and my skills have improved as well. I want to go back in and refactor some of my api endpoints using optional chaining to handle all of the deeply nested arrays and object properties.
+- I'd like to implement more granular functions and error handling, as well as create a suite of tests to ensure I'm not breaking old things as I add new features.
+- Bungie has since changed many aspects of how the API functions. I need to dig back in and refactor how I get my data in order for it to be functional again. I'd like to take that opportunity to design a better system, so that any future changes are more easily handled with less interdependant components and systems.
