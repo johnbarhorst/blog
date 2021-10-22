@@ -1,10 +1,10 @@
 import { PostMeta } from 'lib/posts';
 import { ReactElement } from 'react';
-
+import style from './BlogListPage.module.css';
 
 export function BlogListPage({ allPostsMeta }: { allPostsMeta: PostMeta[]}):ReactElement {
   return (
-    <main>
+    <main className={style.main}>
       <h1>Blog!</h1>
       <section>
         {allPostsMeta.map(({ id, title, description }) => (
