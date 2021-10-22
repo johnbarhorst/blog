@@ -17,7 +17,7 @@ Developing a webpage that utilizes the [Bungie API](https://bungie-net.github.io
 - Certain aspects of the Bungie API require logging in via OAuth. I was able to write my own Passport.js strategy to allow users more access to data and API functionality. [Code Here](https://github.com/johnbarhorst/d2ao-react/blob/master/routes/auth.js)
 - I built the front end to display all of the data using React.js. This project was a perfect use case for React with all of the reusable and frequently updated components.
 - Using React-Router in combination with styled-components and Framer-Motion, I was able to create smooth page transitions and animations.
-- There's a wide variety of similar, but different items to display. I created a higher-order component that could determine which item type was to be displayed, and render the correct component in order to simplify displaying arrays of data. [Code Here](https://github.com/johnbarhorst/johnbarhorst/blob/master/client/src/Components/Destiny/Item.js) and [Here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Components/Destiny/ItemTypes). 
+- There's a wide variety of similar, but different items to display. I created a higher-order component that could determine which item type was to be displayed, and render the correct component in order to simplify displaying arrays of data. [Code Here](https://github.com/johnbarhorst/johnbarhorst/blob/master/client/src/Components/Destiny/Item.js) and [Here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Components/Destiny/ItemTypes).
 
 ## Things I Learned During This Project, And Things I'd Like To Improve
 
