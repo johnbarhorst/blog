@@ -29,7 +29,7 @@ const links = [
   }
 ];
 
-export function Header():ReactElement {
+export function Header({ radial }: {radial: string}):ReactElement {
   const { isToggled: isOpen, toggle } = useToggle(false);
 
   const prefersReducedMotion = useReducedMotion();
@@ -47,6 +47,9 @@ export function Header():ReactElement {
         {isOpen && 
           <motion.nav 
             variants={prefersReducedMotion ? reducedMotionMenuVariants : menuVariants}
+            style={{
+              background: `var(--${radial})`
+            }}
             initial='initial'
             animate='animate'
             exit='exit'
