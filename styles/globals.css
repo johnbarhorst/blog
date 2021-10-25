@@ -28,7 +28,10 @@ body {
   --forestGreen: #004E4C;
   --persianGreen: #339989;
   --white: #fff;
-  --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, rgba(78,21,21,1) 44%, rgba(0,0,0,1) 57%, rgba(78,21,21,1) 77%, rgba(0,0,0,1) 94%);
+  --darkRed: rgba(78,21,21,1);
+  --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkRed) 44%, rgba(0,0,0,1) 57%, var(--darkRed) 77%, rgba(0,0,0,1) 94%);
+  --blueRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkBlue) 44%, rgba(0,0,0,1) 57%, var(--darkBlue) 77%, rgba(0,0,0,1) 94%);
+  --greenRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--forestGreen) 44%, rgba(0,0,0,1) 57%, var(--forestGreen) 77%, rgba(0,0,0,1) 94%);
   --lightBlueGradient: linear-gradient(120deg, rgba(105,161,194,1) 25%, rgba(156,189,208,1) 50%, rgba(105,161,194,1) 75%);
   /* Color Purposes */
   --link: #fff;
@@ -117,6 +120,7 @@ a.isBody {
 .text_center {
   text-align: center;
 }
+
 
 @media screen and (max-width: 768px) {
   .isHiddenMobile {
