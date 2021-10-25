@@ -1,13 +1,33 @@
 import Head from 'next/head';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import { Footer } from '../Footer';
 import styles from './Layout.module.css';
 import { Header } from '../Header';
+import { motion, useCycle, useReducedMotion } from 'framer-motion';
 
 
 export function Layout({ children }: { children: ReactNode }): ReactElement {
+  const [radial, cycleRadial] = useCycle('redRadial','blueRadial','greenRadial');
+  const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    if(prefersReduced) return;
+    cycleRadial();
+  }, [children]);
+
   return (
-    <div className={styles.layout_wrapper} >
+    <motion.div 
+      className={styles.layout_wrapper}
+      initial={{
+        backgroundImage: 'var(--redRadial)'
+      }}
+      animate={{
+        backgroundImage: `var(--${radial})`
+      }}
+      transition={{
+        duration: 3
+      }}
+    >
       <Head>
         <title>John Barhorst | Web Developer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"></meta>
@@ -18,6 +38,6 @@ export function Layout({ children }: { children: ReactNode }): ReactElement {
       <Header />
       {children}
       <Footer />
-    </div>
+    </motion.div>
   );
 }
