@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PostMeta } from 'lib/posts';
 import { ReactElement } from 'react';
 import style from './BlogListPage.module.css';
@@ -11,10 +12,12 @@ export function BlogListPage({ allPostsMeta }: { allPostsMeta: PostMeta[]}):Reac
       </section>
       <section>
         {allPostsMeta.map(({ id, title, description }) => (
-          <a href={`/blog/${id}`} key={id}>
-            <h3>{title}</h3>
-            <p>{description}</p>
-          </a>
+          <Link href={`/blog/${id}`} key={id}>
+            <a>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </a>
+          </Link>
         ))}
       </section>
     </main>
