@@ -1,8 +1,8 @@
 ---
 title: 'Converting a Function into a Hook'
-description: 'Taking a function that utilizes useRef and converting into a reusable hook in TypeScript'
+description: 'Taking a function that utilizes useRef and converting it into a reusable hook in TypeScript'
 ---
-# The Idea
+## The Idea
 
 I had a function that finds an elements center y and center x coordinates. It seemed like something that could be useful in many places, so I converted it into a hook.
 
@@ -41,11 +41,12 @@ export function useElementCenter<T extends HTMLElement>(): UseElementCenterType<
 ```
 
 Then whenever you use the hook, you explicitly declare what sort of element you're passing through the ref.
+
 ```ts
   const [centerX, centerY, centerRef] = useElementCenter<HTMLDivElement>();
 ```
 
-Well, that works... almost. Turns out that using this as a hook causes a render error due to the ref initializing as null. If there's no element, there's nothing to pass the `getElementCenter` function. I solved that using a `useEffect()` hook to only call the function if there's an element being ref'd.
+Well, that works... almost. Turns out that using this as a hook causes a render error due to the ref initializing as null. If there's no element, there are no dimensions to pass to the `getElementCenter` function. I solved that using a `useEffect()` hook to only call the function if there's an element being ref'd.
 
 ```ts
   // Need useEffect here to account for initiating the ref as null.

@@ -9,27 +9,27 @@ Developing a webpage that utilizes the [Bungie API](https://bungie-net.github.io
 
 - Wrote a Node/Express backend API for my site, that consumes data from the Bungie REST API.
 
--Due to the sheer volume of data that exists for a massive game like Destiny 2, not all data is made available directly from their API. Instead,developers must download and self-host a supplemental SQLite database that the primary API often references.
+- Due to the sheer volume of data that exists for a massive game like Destiny 2, not all data is made available directly from their API. Instead, developers must download and self-host a supplemental SQLite database that the primary API often references.
 
-- This created a unique problem to solve where retrieving meaningful data required combining data from the two different sources. I accomplished this by writing code that used array and object traversal and recursion to prepare formatted data for my frontend. [Code Here](https://github.com/johnbarhorst/johnbarhorst/blob/master/controllers/characterHandler.js)
+- This created a unique problem to solve where retrieving meaningful data required combining data from the two different sources. I accomplished this by writing code that used array and object traversal and recursion to prepare formatted data for my frontend. --> [See code here](https://github.com/johnbarhorst/johnbarhorst/blob/master/controllers/characterHandler.js)
 
 - These hashes were comprised of large integer values too large for the database to use. So the numbers had to be converted from a large integer to a positive or negative number in order to be looked up.
 
 - I now have even more of an appreciation for well-documented endpoints! The Bungie API is pretty bare bones with its documentation. Scraping the data took vast amounts of research, database digging, and trial and error.
 
-- To keep the SQLite database up to date, I wrote a function that fetches, decompresses, and saves the database locally using tools like `fs.createWriteStream()`, `fs.renameSync()`, and [unzipper](https://www.npmjs.com/package/unzipper). [Code Here](https://github.com/johnbarhorst/johnbarhorst/blob/master/controllers/destinyControllers.js)
+- To keep the SQLite database up to date, I wrote a function that fetches, decompresses, and saves the database locally using tools like `fs.createWriteStream()`, `fs.renameSync()`, and [unzipper](https://www.npmjs.com/package/unzipper). --> [See code here](https://github.com/johnbarhorst/johnbarhorst/blob/master/controllers/destinyControllers.js)
 
 - Frequent updates to the SQLite database created potential for errors. I have to put into place exception and error handling back up plans.
 
-- Certain aspects of the Bungie API require logging in via OAuth. I was able to write my own Passport.js strategy to allow users more access to data and API functionality. [Code Here](https://github.com/johnbarhorst/d2ao-react/blob/master/routes/auth.js)
+- Certain aspects of the Bungie API require logging in via OAuth. I was able to write my own Passport.js strategy to allow users more access to data and API functionality. --> [See code here](https://github.com/johnbarhorst/d2ao-react/blob/master/routes/auth.js)
 
 - I built the front end to display all of the data using React.js. This project was a perfect use case for React with all of the reusable and frequently updated components.
 
 - Using React-Router in combination with styled-components and Framer-Motion, I was able to create smooth page transitions and animations.
 
-- There's a wide variety of similar, but different items to display. I created a higher-order component that could determine which item type was to be displayed, and render the correct component in order to simplify displaying arrays of data. [Code Here](https://github.com/johnbarhorst/johnbarhorst/blob/master/client/src/Components/Destiny/Item.js) and [Here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Components/Destiny/ItemTypes).
+- There's a wide variety of similar, but different items to display. I created a higher-order component that could determine which item type was to be displayed, and render the correct component in order to simplify displaying arrays of data. --> [See code here](https://github.com/johnbarhorst/johnbarhorst/blob/master/client/src/Components/Destiny/Item.js) and [here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Components/Destiny/ItemTypes).
 
-- Built my own set of reusable React hooks to easily handle things like fetching data, utilizing a browsers local storage, and controlling form inputs. [Code Here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Hooks)
+- Built my own set of reusable React hooks to easily handle things like fetching data, utilizing a browsers local storage, and controlling form inputs. --> [See code here](https://github.com/johnbarhorst/johnbarhorst/tree/master/client/src/Hooks)
 
 ## Things I Learned During This Project, And Things I'd Like To Improve
 
