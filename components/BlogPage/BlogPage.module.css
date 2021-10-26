@@ -2,7 +2,8 @@
 
 .main {
   font-family: 'Roboto', sans-serif;
-  max-width: 90%;
+  width: 90%;
+  max-width: 1000px;
   margin: 0 auto 2rem;
   /* Need to contain the whitespace from the pre tags. */
   overflow-x: hidden;
