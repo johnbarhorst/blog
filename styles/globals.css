@@ -32,7 +32,10 @@ body {
   --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkRed) 44%, rgba(0,0,0,1) 57%, var(--darkRed) 77%, rgba(0,0,0,1) 94%);
   --blueRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkBlue) 44%, rgba(0,0,0,1) 57%, var(--darkBlue) 77%, rgba(0,0,0,1) 94%);
   --greenRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--forestGreen) 44%, rgba(0,0,0,1) 57%, var(--forestGreen) 77%, rgba(0,0,0,1) 94%);
-  --lightBlueGradient: linear-gradient(120deg, rgba(105,161,194,1) 25%, rgba(156,189,208,1) 50%, rgba(105,161,194,1) 75%);
+  --lighten_2: rgba(255,255,255, 0.2);
+  --lighten_3: rgba(255,255,255, 0.3);
+  --darken_2: rgba(0,0,0,0.2);
+  --darken_3: rgba(0,0,0,0.3);
   /* Color Purposes */
   --link: #fff;
   --primaryBG: var(--redRadial);
