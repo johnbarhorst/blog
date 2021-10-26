@@ -8,10 +8,10 @@ export function BlogListPage({ allPostsMeta }: { allPostsMeta: PostMeta[]}):Reac
     <main className={style.main}>
       <section>
         <h1>Blog!</h1>
-        <p>If you&apos;ve stumbled across this site early, please note these blogs are unfinished. I had to do some live testing and felt safe enough in my obscurity to go ahead and put these things live.</p>
+        <p>These are my musings on some recent projects. Each blog is still a work in progress at the moment, but you&apos;re welcome to take a sneak peek!</p>
       </section>
       <section>
-        {allPostsMeta.map(({ id, title, description }) => (
+        {allPostsMeta.filter(({ title }) => title !== 'BI Worldwide').map(({ id, title, description }) => (
           <Link href={`/blog/${id}`} key={id}>
             <a>
               <h3>{title}</h3>
