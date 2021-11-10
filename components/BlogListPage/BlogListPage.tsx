@@ -14,11 +14,17 @@ export function BlogListPage({ allPostsMeta }: { allPostsMeta: PostMeta[] }): Re
       <section className={style.blog_list} >
         {/* filtering out the bit I wrote up for BI. Doesn't really belong in the list. Should've made a separate page for it. */}
         {allPostsMeta.filter(({ title }) => title !== 'BI Worldwide').map(({ id, title, description }) => (
-          <Link href={`/blog/${id}`} key={id}>
+          <Link href={`/blog/${id}`} passHref key={id}>
             <motion.a
               className={style.blog_card}
               whileHover={{
                 scale: 1.01
+              }}
+              whileFocus={{
+                scale: 1.01
+              }}
+              whileTap={{
+                scale: .95
               }}
             >
               <h3>{title}</h3>
