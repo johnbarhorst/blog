@@ -1,5 +1,6 @@
 .main {
   width: 90%;
+  max-width: 1000px;
   margin: 0 auto 4rem;
 }
 
