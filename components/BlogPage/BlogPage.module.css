@@ -14,7 +14,7 @@
 }
 
 .main a {
-  color: var(--teal);
+  color: var(--blogLink);
   text-decoration: underline;
 }
 
