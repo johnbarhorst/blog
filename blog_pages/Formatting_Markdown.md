@@ -3,9 +3,11 @@ title: 'Learning to Write and Format Markdown'
 description: 'How I started learning to become the amazing and influential blogger I am today.'
 ---
 
-## The Idea
+## Learning How to Write and Format Markdown
 
-One piece of advice I've heard repeated many times while learning web development, is that blogging is a great way to showcase your skills. Not only that, but it also helps prove to prospective employers that you know your stuff and you're able to communicate it. Personally, writing about coding has never seemed as appealing as actually writing code, but I'm going to give this a shot. It'll probably end up being a lot like those recipe pages. Not so much about how my grandmother used to make the best code, and memories of how the smells of it would fill her home. But just as much "Yeah, I get it! Get to the point!"
+One piece of advice I've heard repeated many times while learning web development, is that blogging is a great way to showcase your skills. Not only that, but it also helps prove to prospective employers that you know your stuff and you're able to communicate it.
+
+Personally, writing about coding has never seemed as appealing as actually writing code, but I'm going to give this a shot. It'll probably end up being a lot like those recipe pages. Not so much about how my grandmother used to make the best code, and memories of how the smells of it would fill her home. But just as much "Yeah, I get it! Get to the point!"
 
 I don't know much about actually writing blogs. I have a tendency to pour over even the smallest things I write, trying to perfect the wording and order. It immediately turns into a painstaking process, and takes way longer than it should.
 
