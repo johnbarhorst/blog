@@ -9,7 +9,7 @@ export function BlogListPage({ allPostsMeta }: { allPostsMeta: PostMeta[] }): Re
     <main className={style.main}>
       <section className={style.banner}>
         <h1>Blog!</h1>
-        <p>These are my musings on some recent projects. Each blog is still a work in progress at the moment, but you&apos;re welcome to take a sneak peek!</p>
+        <p>I thought I&apos;d give blogging a whirl. I simply haven&apos;t had the time to finish these up yet. But if you want to check them out, feel free!</p>
       </section>
       <section className={style.blog_list} >
         {/* filtering out the bit I wrote up for BI. Doesn't really belong in the list. Should've made a separate page for it. */}
