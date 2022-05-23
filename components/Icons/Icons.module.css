@@ -4,3 +4,7 @@
   width: 1rem;
   margin: .5rem;
 }
+
+.anchor {
+  display: inline-block;
+}

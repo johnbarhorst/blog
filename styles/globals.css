@@ -28,8 +28,14 @@ body {
   --forestGreen: #004E4C;
   --persianGreen: #339989;
   --white: #fff;
-  --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, rgba(78,21,21,1) 44%, rgba(0,0,0,1) 57%, rgba(78,21,21,1) 77%, rgba(0,0,0,1) 94%);
-  --lightBlueGradient: linear-gradient(120deg, rgba(105,161,194,1) 25%, rgba(156,189,208,1) 50%, rgba(105,161,194,1) 75%);
+  --darkRed: rgba(78,21,21,1);
+  --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkRed) 44%, rgba(0,0,0,1) 57%, var(--darkRed) 77%, rgba(0,0,0,1) 94%);
+  --blueRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkBlue) 44%, rgba(0,0,0,1) 57%, var(--darkBlue) 77%, rgba(0,0,0,1) 94%);
+  --greenRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--forestGreen) 44%, rgba(0,0,0,1) 57%, var(--forestGreen) 77%, rgba(0,0,0,1) 94%);
+  --lighten_2: rgba(255,255,255, 0.2);
+  --lighten_3: rgba(255,255,255, 0.3);
+  --darken_2: rgba(0,0,0,0.2);
+  --darken_3: rgba(0,0,0,0.3);
   /* Color Purposes */
   --link: #fff;
   --primaryBG: var(--redRadial);
@@ -38,6 +44,7 @@ body {
   --textDark: var(--black);
   --textPrimary: var(--textLight);
   --textSecondary: var(--textDark);
+  --blogLink: var(--teal);
   /* Shadows */
   --elevate_1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --elevate_2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -117,6 +124,7 @@ a.isBody {
 .text_center {
   text-align: center;
 }
+
 
 @media screen and (max-width: 768px) {
   .isHiddenMobile {

@@ -8,9 +8,8 @@
   box-shadow: var(--elevate_2);
   padding: 2rem;
   text-align: center;
-  color: var(--textDark);
-  background: rgb(105,161,194);
-  background: var(--lightBlueGradient);
+  color: var(--textLight);
+  background: var(--lighten_2);
   border-radius: 1rem;
 }
 

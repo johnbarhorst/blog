@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.main {
+  font-family: 'Roboto', sans-serif;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  /* Need to contain the whitespace from the pre tags. */
+  overflow-x: hidden;
+}
+
+.main h1,
+.main h2,
+.main h3,
+.main h4 {
+  text-align: center;
+}
+
+.main p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  max-width: 716px;
+  margin: 0 auto 2rem;
+}
+
+.main a {
+  color: var(--blogLink);
+  text-decoration: underline;
+}
+
+.main pre {
+  margin-bottom: 2rem;
+}
+
+.main pre > code {
+  font-size: .75rem;
+}
+
+.code {
+  background: var(--black)
+}

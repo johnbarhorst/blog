@@ -23,7 +23,6 @@
 }
 
 .mobileNav {
-  background: var(--primaryBG);
   position: fixed;
   top: calc(var(--headerHeight) - 1px);
   left: 0;
