@@ -81,7 +81,9 @@ const mouseY = info.point.y;
 const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
 ```
 
-By utilizing the getAngle function, we now have a positive or negative float that shows how far and in what direction the mouse has moved, relative to the center of our element. Negative values indicate counterclockwise, while positive indicate a clockwise pan motion.
+Finding the center of an element seems like it could be a useful tool in other places. So I've abstracted it into it's own hook. You can read about that [here](Animated_Dial).
+
+By utilizing the getAngle function, we now have a positive or negative float that shows how far and in what direction the mouse has moved, relative to the center of our element. Negative values indicate counterclockwise, while positive values indicate a clockwise pan motion.
 
 We can further simplify the value into a 1, 0 or a -1 using `Math.sign();`.
 
@@ -101,13 +103,92 @@ if(angle < 1) {
 
 With all of this, it's finally functional! However, it triggers really quickly. In order to adjust the rate of the function firing off, we're gonna have to do a little more work.
 
-To slow down or speed up the rate at which the rotation increases my state, I had to set up some cumulative state. The getAngle function returns a positive or negative float, and by accumulating that number in state, and checking it against a threshold, I was able to create a buffer of sorts. Once the drag event had moved far enough, I would then trigger an implement or decrement to the display state.
+To slow down or speed up the rate at which the rotation increases my state, I chose to set up some cumulative state. The getAngle function returns a positive or negative float, and by accumulating that number in state, and checking it against a threshold, I was able to create a buffer of sorts. Once the drag event had moved far enough, I would then trigger an implement or decrement to the display state.
 
-One thing that could trip that up would be the user changing directions. So I stored last direction in state, and when direction changed, I would reset the buffer and start over. In order to keep the buffer fairly simple, I applied Math.abs() to the angle value, which converts any negative values to positive.
+Another potential path to victory might be using a de-bouncer or de-limiter function. I'm fairly certain that would be the more performant way to go about things. At the moment though, I'm not sure where I'd want to implement it, and performance for this site is hardly an issue. I'm making a personal time usage call here, but you may want to look further into it.
 
-With these controls, we can use any clockwise or counter clockwise pan event to trigger any corresponding state changes we want. There are still few things to do though. First of all, this is not accessible to anyone only using a keyboard. We can fix that with some hidden but tab-able buttons that also change state the same way.
+One thing that could trip up the cumulative state method is the user changing directions. So I'm storing the last direction in state, and when direction changes, I reset the buffer and start over. In order to keep the buffer fairly simple, I applied `Math.abs()` to the angle value, which converts any negative values to positive.
 
-Another thing is there's no actual animation going on yet.
+In order to have the dial be reusable, and affect the state of another component, we pass in handler functions as props. This way we can tie an external components state changes to how the dial has been turned, and set the sensitivity of the buffer.
 
-I'd like some reusability from this sort of functionality. Time to refactor.
-First thing I did was pull out the getElementCenter function, and turn it into a hook. Seems like a thing I could use elsewhere someday.
+So putting together this whole journey so far, here's what we've got:
+
+```ts
+  interface Props {
+  sensitivity?: number,
+  handleClockwise: () => void,
+  handleCounterClockwise: () => void,
+  children?: ReactNode 
+}
+
+interface GetAngleArgs {
+  centerX: number,
+  centerY: number,
+  lastX: number,
+  lastY: number,
+  mouseX: number,
+  mouseY: number
+}
+
+function getAngle({  centerX, centerY, lastX, lastY, mouseX, mouseY }: GetAngleArgs){
+  const x1 = lastX - centerX;
+  const y1 = lastY - centerY;
+  const x2 = mouseX - centerX;
+  const y2 = mouseY - centerY;
+  const d1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const d2 = Math.sqrt(x2 * x2 + y2 * y2);
+
+  return Math.asin((x1 / d1) * (y2 / d2) - (y1 / d1) * (x2 / d2));
+}
+
+
+export function AnimatedDial({
+  // roughly 6.6 sensitivity would be one full rotation to increase by 1
+  sensitivity= .75,
+  handleClockwise,
+  handleCounterClockwise,
+  children
+}: Props):ReactElement {
+  const [cumulativeDistance, setCumulativeDistance] = useState(0);
+  const [lastDirection, setLastDirection] = useState(0);
+  const [centerX, centerY, centerRef] = useElementCenter<HTMLDivElement>();
+  // const dialRef = useRef<HTMLDivElement>(null);
+
+
+  function onPan(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo):void {
+    const lastX = info.point.x - info.delta.x;
+    const lastY = info.point.y - info.delta.y;
+    const mouseX = info.point.x;
+    const mouseY = info.point.y;
+    
+    const angle = getAngle({ centerX, centerY, lastX, lastY, mouseX, mouseY });
+    // 1 = clockwise, -1 = counter clockwise, 0 = no movement (but mouse is still down and event is firing)
+    const direction = Math.sign(angle);
+
+    // I think there's a better way to handle this bit. Perhaps a switch/case action solution.
+    if(direction === 0) return;
+
+    if(direction !== lastDirection) {
+      setCumulativeDistance(0);
+      return setLastDirection(direction);
+    }
+
+    if(cumulativeDistance > sensitivity) {
+      setCumulativeDistance(0);
+      return direction > 0 ? handleClockwise() : handleCounterClockwise();
+    }
+
+    setCumulativeDistance(prev => prev + Math.abs(angle));
+  }
+
+
+  return (
+    <div
+    >
+      {children}
+    </div>
+  );
+}
+  ```
+
+With these controls, we can use any clockwise or counter clockwise pan event to trigger any corresponding state changes we want. There are still few things to do though. First of all, this is not accessible to anyone only using a keyboard. We can fix that with some hidden but tab-able buttons that also change state the same way, or we could avoid the dial all together for a keyboard only use case. Depends on what works best for your app.
