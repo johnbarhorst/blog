@@ -29,7 +29,9 @@ const rotatingTitleList = [
   'Problem Solver',
   'Dog Dad',
   'Hearthstone Player',
-  'React Developer'
+  'React Developer',
+  'Salsa Maker',
+  'Not a Salsa Dancer'
 ];
 
 const initTechArray = [
@@ -38,12 +40,12 @@ const initTechArray = [
   'Node/Express',
   'Mongoose/MongoDB',
   'Framer Motion',
-  'Styled Components'
+  'TypeScript'
 ];
 
 const initDabbleArray = [
   'GraphQL',
-  'TypeScript',
+  'Styled Components',
   'Svelte',
   'Sass'
 ];

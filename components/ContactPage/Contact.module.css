@@ -1,8 +1,29 @@
 .main {
   max-width: 90%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.main ul {
+.section {
+  box-shadow: var(--elevate_2);
+  padding: 20px 20px;
+  color: var(--textLight);
+  background: var(--lighten_2);
+  border-radius: 10px;
+}
+
+.section ul {
   list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 360px) {
+  .section {
+    padding: 20px 40px;
+  }
+  .section ul {
+    padding: 40px;
+  }
 }
