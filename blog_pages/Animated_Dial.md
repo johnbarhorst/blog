@@ -2,11 +2,11 @@
 title: 'Building an Interactive Animated Dial'
 description: 'My adventures in building an interactive and animated dial that a user can "spin" to change values.'
 ---
-# Building An Interactive Animated Dial
+## Building An Interactive Animated Dial
 
-## The Idea
+### The Idea
 
-My brother had an idea for a collaborative project. Part of that idea involved having a "spinnable" dial that a user could interact with to increase and decrease values. I liked the idea, and set off to create just such a thing.
+My brother had an idea for a collaborative project. Part of that idea involved having a "spin-able" dial that a user could interact with to increase and decrease values. I liked the idea, and set off to create just such a thing.
 
 ### The Process
 
@@ -17,10 +17,12 @@ Seems like something I could use!
 
 When an onPan callback function is set to a motion element, it gives us the following information whenever a pan gesture is recognized on that element:
 
+```none
 point: Relative to the device or page.
 delta: Distance moved since the last event.
 offset: Offset from the original pan event.
 velocity: Current velocity of the pointer.
+```
 
 This all seems like useful data. But one thing I couldn't find was a way to know just 'how' a pan gesture is moving. Up, down, around in a circle? This sort of thing sounds like math, and definitely not something I was familiar with. After a bit of searching for how to determine clockwise/counterclockwise movement, and even a video showing it in Unity, I found this post on [stack overflow](https://stackoverflow.com/questions/49147241/how-to-detect-if-mouse-is-moving-in-clockwise-direction).
 
@@ -40,12 +42,15 @@ function getAngle(cx, cy, ox, oy, mx, my){
 }
 ```
 
-This function returns a positive or negative float that shows how far the mouse has moved since the old mouse position. Positive indicates clockwise motion, negative indicates counterclockwise. Some of the data we need to plug into that function, is already given to us throught the onPan callback. But we still need a bit more info.
+This function returns a positive or negative float that shows how far the mouse has moved since the old mouse position. Positive indicates clockwise motion, negative indicates counterclockwise. Some of the data we need to plug into that function, is already given to us through the `onPan` callback. But we still need a bit more info.
 
 In order to use this, we also need to know the center point coordinates on the screen of the element we want to use as a dial.
 
-To get that data, we can apply a ref to the dial element,
-  `const dialRef = useRef<HTMLDivElement>(null);`
+To get that data, we can apply a ref to the dial element
+
+```ts
+const dialRef = useRef<HTMLDivElement>(null);
+```
 
 and then, get the element dimensions as well as its position on the screen, divided by two.
 
@@ -62,7 +67,7 @@ function getElementCenter(top: number, left: number, width: number, height: numb
 
 We already have the current mouse position from the onPan callback function. The last piece we need is where the mouse WAS last time. We could store each mouse event in a useState, and then compare/update that each time the onPan function fires. Luckily though, onPan sort of does this for us already with info.delta.
 
-The info.point gives us the current mouse position, and by subracting the delta from the current, we can get where the mouse last was.
+The info.point gives us the current mouse position, and by subtracting the delta from the current, we can get where the mouse last was.
 
 Now we have all the mouse information we need to feed into the getAngle function,
 
