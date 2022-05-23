@@ -54,7 +54,7 @@ export function getAllPostIds(): {params:{id:string}}[] {
 
 This part was pretty straight forward to adapt from the Next.js docs. The only real changes I had to make were the directory path and adding the TypeScript types.
 
-Then in `'./pages/blog/[id].tsx'` we can give Next our array of paths, and Next will use that to fetch data serverside, and statically generate all our pages ahead of time.
+Then in `'./pages/blog/[id].tsx'` we can give Next our array of paths, and Next will use that to fetch data server-side, and statically generate all our pages ahead of time.
 
 ```ts
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -70,13 +70,13 @@ I'm not thrilled with using an arrow function here. I have nothing against using
 
 Things to note:
 
-- The Next.js functions `getStaticPaths()`, `getStaticProps()`, and `getServerSideProps()` can only work on a 'page' file in Next. That is to say a file in the './pages' directory, which is how Next knows that file is a valid route. These functions get exported from the page file, and are compiled (transpiled? I still don't totally get these things) as serverside code. You can't throw one of these functions into a separate component file, hoping to make some statically generated components. It doesn't work that way.
+- The Next.js functions `getStaticPaths()`, `getStaticProps()`, and `getServerSideProps()` can only work on a 'page' file in Next. That is to say a file in the './pages' directory, which is how Next knows that file is a valid route. These functions get exported from the page file, and are compiled (transpiled? I still don't totally get these things) as server-side code. You can't throw one of these functions into a separate component file, hoping to make some statically generated components. It doesn't work that way.
 
 - The `getStaticPaths()` function is used to create a list of possible routes within a dynamic route. Then at build time, Next takes those routes, uses the parameters to fetch the required data, and builds each page into a static html file. You could then still go off and fetch dynamic data on each page if you had to, using `useEffect()` or a library like [SWR](https://swr.vercel.app/), but that's not what I'm up to here.
 
 - I set `fallback: false` to ensure any requests to an invalid '/blog' path will result in a 404 page being served. Which reminds me, I need to create a custom 404 page.
 
-- There are `fallback: true` and `fallback: blocking` options if I were ever in a situation where I wanted to be able to add blog pages without rebuilding the whole site. But since this is deployed on Vercel, and every push to production triggers a full build anyway, this is completely unneccesary at the moment.
+- There are `fallback: true` and `fallback: blocking` options if I were ever in a situation where I wanted to be able to add blog pages without rebuilding the whole site. But since this is deployed on Vercel, and every push to production triggers a full build anyway, this is completely unnecessary at the moment.
 
 - Either way, you need to include one of those fallback settings.
 
@@ -84,11 +84,11 @@ Things to note:
 
 There are a lot of options when it comes to choosing a library to render markdown. Using just the previous set up with Remark, I could process the markdown file into HTML and feed it into a jsx element using `_dangerouslySetInnerHTML`. I realize that `_dangerouslySetInnerHTML` isn't always bad, but it being named as a warning makes me want to avoid it. I guess that's the whole point.
 
-My initial plan was to use [mdx](https://v2.mdxjs.com/docs/getting-started/). However there's a warning banner on the top of the page saying that the docs are for an upcoming release of mdx, not for what's out now. Rather than wrestle with the version/documentation discrepencies, I opted to try out [react-markdown](https://www.npmjs.com/package/react-markdown).
+My initial plan was to use [mdx](https://v2.mdxjs.com/docs/getting-started/). However there's a warning banner on the top of the page saying that the docs are for an upcoming release of mdx, not for what's out now. Rather than wrestle with the version/documentation discrepancies, I opted to try out [react-markdown](https://www.npmjs.com/package/react-markdown).
 
 React-markdown not only works well with Remark, but it even talks about the whole `_dangerouslySetInnerHTML` thing right there in the sales pitch. Seems like these folks are on the same page that I am.
 
-After installing react-markdown, I ran immediately into a hurdle. It turns out that the current version of react-markdown is an ES Module only package, and it does not want to play nice with Nexts compiling. I thought that was ok since I'm using `import ReactMarkdown from 'react-markdown';`, and not `const react-markdown = require(react-markdown);`, it still causes the following error in my terminal:
+After installing react-markdown, I ran immediately into a hurdle. It turns out that the current version of react-markdown is an ES Module only package, and it does not want to play nice with Next's compiling. I thought that was ok since I'm using `import ReactMarkdown from 'react-markdown';`, and not `const react-markdown = require(react-markdown);`, it still causes the following error in my terminal:
 
 ```none
 Error: Must use import to load ES Module: .../blog/node_modules/react-markdown/index.js
@@ -160,7 +160,7 @@ export function getPosts(): PostMeta[] {
 }
 ```
 
-I already have `./pages/blog/[id].js` partially set up with the `getStaticPaths()` function. Fleshing that out further, I can prefetch all the blog content to be rendered by react-markdown.
+I already have `./pages/blog/[id].js` partially set up with the `getStaticPaths()` function. Fleshing that out further, I can pre-fetch all the blog content to be rendered by react-markdown.
 
 ```tsx
 import { BlogPage } from 'components/BlogPage';
@@ -192,7 +192,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     };
   }
-  throw new Error(`id paramater must be a string, instead got ${typeof(params.id)}`);
+  throw new Error(`id parameter must be a string, instead got ${typeof(params.id)}`);
 };
 ```
 
@@ -255,7 +255,7 @@ Seems odd to me that changing from the explicit ESM version to the CommonJS vers
 
 Struggled with finding the typescript types for SyntaxHighlighter. Looked it up on Github and found them [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-syntax-highlighter/index.d.ts).
 
-Wasn't super happy with any of the themes for code formatting I've found so far. Looked into creating one myself, based on my prefered VSCode theme [Perfect-Dark](https://marketplace.visualstudio.com/items?itemName=richardmarks.vscode-perfect-dark-color-theme). This is turning out to be a rabbit hole though. Definitely something I want to come back to. Maybe even design my own theme from scratch. However for now I should get more productive things done.
+Wasn't super happy with any of the themes for code formatting I've found so far. Looked into creating one myself, based on my preferred VSCode theme [Perfect-Dark](https://marketplace.visualstudio.com/items?itemName=richardmarks.vscode-perfect-dark-color-theme). This is turning out to be a rabbit hole though. Definitely something I want to come back to. Maybe even design my own theme from scratch. However for now I should get more productive things done.
 
 There seems to be some issues with the styling/display on any rendered blog page. My nav menu, all the text, everything is appearing much smaller than on other pages when in mobile testing view on chrome. This is despite the fact that the base styles and font size are the same as everywhere else.
 
