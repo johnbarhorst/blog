@@ -6,11 +6,11 @@
 
 .card {
   box-shadow: var(--elevate_2);
-  padding: 2rem;
+  padding: 20px 40px;
   text-align: center;
   color: var(--textLight);
   background: var(--lighten_2);
-  border-radius: 1rem;
+  border-radius: 10px;
 }
 
 .card h3 {
