@@ -4,17 +4,18 @@ description: 'My adventures in building an interactive and animated dial that a 
 ---
 # Building An Interactive Animated Dial
 
-### The Idea
+## The Idea
+
 My brother had an idea for a collaborative project. Part of that idea involved having a "spinnable" dial that a user could interact with to increase and decrease values. I liked the idea, and set off to create just such a thing.
 
 ### The Process
 
 For animations, I've been using Framer Motion quite a bit lately. It seemed like a good place to start looking for ideas on how to implement the rest of the functionality.
 
-After just a little digging, I found the [documentation](https://www.framer.com/docs/gestures/###onpan) for their onPan function. 
+After just a little digging, I found the [documentation](https://www.framer.com/docs/gestures/###onpan) for their onPan function.
 Seems like something I could use!
 
-When an onPan callback function is set to a motion element, it gives us the following information whenever a pan gesture is rocognised on that element:
+When an onPan callback function is set to a motion element, it gives us the following information whenever a pan gesture is recognized on that element:
 
 point: Relative to the device or page.
 delta: Distance moved since the last event.
@@ -43,7 +44,7 @@ This function returns a positive or negative float that shows how far the mouse 
 
 In order to use this, we also need to know the center point coordinates on the screen of the element we want to use as a dial.
 
-To get that data, we can apply a ref to the dial element, 
+To get that data, we can apply a ref to the dial element,
   `const dialRef = useRef<HTMLDivElement>(null);`
 
 and then, get the element dimensions as well as its position on the screen, divided by two.
@@ -64,6 +65,7 @@ We already have the current mouse position from the onPan callback function. The
 The info.point gives us the current mouse position, and by subracting the delta from the current, we can get where the mouse last was.
 
 Now we have all the mouse information we need to feed into the getAngle function,
+
 ```ts
 const { centerX, centerY } = getElementCenter({ offsetTop, offsetLeft, clientWidth, clientHeight });
 const oldX = info.point.x - info.delta.x;
@@ -73,9 +75,11 @@ const mouseY = info.point.y;
 
 const angle = getAngle({ centerX, centerY, oldX, oldY, mouseX, mouseY });
 ```
+
 By utilizing the getAngle function, we now have a positive or negative float that shows how far and in what direction the mouse has moved, relative to the center of our element. Negative values indicate counterclockwise, while positive indicate a clockwise pan motion.
 
 We can further simplify the value into a 1, 0 or a -1 using `Math.sign();`.
+
 ```js
 const direction = Math.sign(angle);
 
@@ -89,6 +93,7 @@ if(angle < 1) {
   setValue(prev = prev -1);
 }
 ```
+
 With all of this, it's finally functional! However, it triggers really quickly. In order to adjust the rate of the function firing off, we're gonna have to do a little more work.
 
 To slow down or speed up the rate at which the rotation increases my state, I had to set up some cumulative state. The getAngle function returns a positive or negative float, and by accumulating that number in state, and checking it against a threshold, I was able to create a buffer of sorts. Once the drag event had moved far enough, I would then trigger an implement or decrement to the display state.
@@ -101,4 +106,3 @@ Another thing is there's no actual animation going on yet.
 
 I'd like some reusability from this sort of functionality. Time to refactor.
 First thing I did was pull out the getElementCenter function, and turn it into a hook. Seems like a thing I could use elsewhere someday.
-
