@@ -29,6 +29,7 @@ body {
   --persianGreen: #339989;
   --white: #fff;
   --darkRed: rgba(78,21,21,1);
+  /* TODO rework this so we only have to change the variable */
   --redRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkRed) 44%, rgba(0,0,0,1) 57%, var(--darkRed) 77%, rgba(0,0,0,1) 94%);
   --blueRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--darkBlue) 44%, rgba(0,0,0,1) 57%, var(--darkBlue) 77%, rgba(0,0,0,1) 94%);
   --greenRadial: radial-gradient(circle at bottom left, rgba(0,0,0,1) 23%, var(--forestGreen) 44%, rgba(0,0,0,1) 57%, var(--forestGreen) 77%, rgba(0,0,0,1) 94%);
@@ -38,7 +39,7 @@ body {
   --darken_2: rgba(0,0,0,0.2);
   --darken_3: rgba(0,0,0,0.3);
   /* Color Purposes */
-  --link: #fff;
+  --link: var(--white);
   --primaryBG: var(--redRadial);
   --secondaryBG: var(--forestGreen);
   --textLight: var(--white);

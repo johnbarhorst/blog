@@ -1,0 +1,33 @@
+.base_button {
+  border: 1px solid transparent;
+  color: var(--white);
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .1s;
+}
+
+.large {
+  border-radius: 5px;
+  font-size: 1rem;
+  height: 40px;
+  margin: 5px;
+  padding: 2px 1rem;
+  max-width: 100%;
+}
+
+.base {
+  border-radius: 12px;
+  color: var(--black);
+  padding: 6px .6rem;
+}
+
+.base_button:hover {
+  transform: scale(1.05);
+}
+
+.primary {
+  background: var(--persianGreen);
+}

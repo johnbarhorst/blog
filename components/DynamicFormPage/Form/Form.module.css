@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  background: var(--lighten_2);
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.section_header {
+  background-color: var(--aqua-light);
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.section_text {
+  padding: 5px;
+  margin: 0 0 0 10px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 5rem;
+}
